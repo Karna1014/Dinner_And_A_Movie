@@ -1,25 +1,32 @@
 
-const PORT = process.env.PORT || 3005;
-// Create an instance of the express app.
-
+const express = require("express");
+const sequelize = require("sequelize");
 const app = express();
-// Set Handlebars as the default templating engine.
+var express = require("express");
 
-app.use(express.static("public"));
-//Parse app body as JSON
+// setting view port
+
+var PORT = process.env.PORT || 8080;
+
+var db = require("./models");
+
+// Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//set Handlebars
-const exphbs = require("express-handlebars");
+// Static directory
+app.use(express.static("public"));
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+// Routes
+// =============================================================
+require("./routes/html-routes.js")(app);
+require("./routes/movie-api-routes.js")(app);
+require("./routes/dinner-api-routes.js")(app);
 
-const routes = require("./controllers/burgers_controller.js");
-
-app.use(routes);
-
-app.listen(PORT, function() {
-    console.log("Server listening on: http://localhost:" + PORT);
+// Syncing our sequelize models and then starting our Express app
+// =============================================================
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
