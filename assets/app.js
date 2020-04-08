@@ -75,5 +75,4 @@ $(document).on("click", "#movie-submit", function (e) {
         $("#error-text").text("Please enter three movies before pressing submit.");
         $("#error").modal("show");
     }
-
 });
