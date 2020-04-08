@@ -4,6 +4,8 @@ const sequelize = require("sequelize");
 const app = express();
 var express = require("express");
 
+// setting view port
+
 var PORT = process.env.PORT || 8080;
 
 var db = require("./models");
