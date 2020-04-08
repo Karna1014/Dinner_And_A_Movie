@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/7.13.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.4/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.4/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.4/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.13.4/firebase-analytics.js"></script>
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBOmny4mwrBq_uySxdWhy22Rfk1ax5uDB4",
+    authDomain: "dinner-70925.firebaseapp.com",
+    databaseURL: "https://dinner-70925.firebaseio.com",
+    projectId: "dinner-70925",
+    storageBucket: "dinner-70925.appspot.com",
+    messagingSenderId: "81278181735",
+    appId: "1:81278181735:web:e6441bc700eae6f17c8fc2",
+    measurementId: "G-7N41FQGW63"
+  };
+  var uiConfig = {
+        signInSuccessUrl: "success.html",
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+          // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+          firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+        ],
+        // tosUrl and privacyPolicyUrl accept either url string or a callback
+        // function.
+        // Terms of service url/callback.
+        tosUrl: '<your-tos-url>',
+        // Privacy policy url/callback.
+        privacyPolicyUrl: function() {
+          window.location.assign('<your-privacy-policy-url>');
+        }
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+</head>
+<body>
+    
+</body>
+</html>
