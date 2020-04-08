@@ -1,0 +1,61 @@
+<div class="container">  
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default" id="orderPanel">
+                <div class="panel-heading" id="order">
+                 <strong><p>Choose the movie you like to watch</p></strong>   
+                </div>
+                <div class="panel-body">
+
+                    <ul>
+                        {{#each movies}}
+                        {{#unless watched}}
+
+                        <span><strong> {{this.id}} - {{this.movie_name}}</strong></span>
+                        <button type="button" class="watchMovie btn btn-warning" id="watchMovie" data-id="{{this.id}}"
+                            data-newWatched="{{watch}}">Watch!</button>
+                        <hr>
+                        {{/unless}}
+                        {{/each}}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" id="delPanel">
+                <div class="panel-heading" id="watched"><strong><p>Remove movie when watched</p></strong>  
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        {{#each moviess}}
+                        {{#if watched}}
+                        <span><strong> {{this.id}} - {{this.movie_name}}</strong></span>
+                        <button type="button" class="trashMovie btn btn-danger" id="trashbutton" data-id="{{this.id}}"
+                            data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
+                        <hr>
+                        {{/if}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="jumbotron">
+        <h1>Add Your Burger</h1>
+        <br>
+        <panel>
+            <form class="create-form">
+                <div class="form-group">
+                    <label class="forMovie" for="newMovie">Put burger name here!</label>
+                    <input type="text" id="newMovie" name="burger">
+                    <button type="submit" class="btn btn-primary" id="addMoive">
+                        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </form>
+        </panel>
+    </div>
+</div>
