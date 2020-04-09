@@ -2,7 +2,7 @@
 const express = require("express");
 const sequelize = require("sequelize");
 const app = express();
-var express = require("express");
+
 
 // setting view port
 
@@ -14,14 +14,22 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 // Static directory
 app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/html-routes.js")(app);
-require("./routes/movie-api-routes.js")(app);
-require("./routes/dinner-api-routes.js")(app);
+var routes = require("./routes/html-routes.js");
+
+app.use(routes);
+// require("./routes/movie-api-routes.js")(app);
+// require("./routes/dinner-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
@@ -30,3 +38,4 @@ db.sequelize.sync({ force: true }).then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+
