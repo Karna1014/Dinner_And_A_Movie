@@ -7,7 +7,7 @@
 var path = require("path");
 var express = require("express");
 var router = express.Router();
-var fbApp = require("../config/fb-config");
+var fbApp = require("../public/assets/js/fb-config");
 // Routes
 // =============================================================
 
