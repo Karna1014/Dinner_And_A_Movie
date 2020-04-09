@@ -15,21 +15,16 @@ var fbApp = require("../config/fb-config");
  
 // // // Each of the below routes just handles the HTML page that the user gets sent to.
 // });
-// index route loads view.html
+// index route loads login page
 router.get("/", function(req, res) {
-    console.log("route hit");
-  // res.sendFile(path.join(__dirname, "../views/index"));
+    console.log("route hit log");
   res.render("login", {});
 });
+
 router.get("/signup", function(req, res) {
-  console.log("route hit");
-// res.sendFile(path.join(__dirname, "../views/signup"));
+  console.log("route hit sign");
   res.render("signup", {});
 });
-
-// router.get("/login", function(req, res) {
-//   res.sendFile(path.join(__dirname, "../public/login.html"));
-// });
 
 router.get("/dinner", function(req, res) {
   console.log("redirected");
