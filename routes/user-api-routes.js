@@ -37,9 +37,9 @@ module.exports = function (app) {
                        id: req.params.id
                    }
                })
-               .then(function (result) {
+               .then(function (resultGenre) {
 
-                   var Genre = result.Genre;
+                   var Genre = resultGenre.Genre;
                   // api_key=6bd7be41a26f54fd1b16437cf9ecfe5a;
                    var today = moment().format('YYYY-MM-DD');
                    var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres" + Genre;
@@ -62,7 +62,7 @@ module.exports = function (app) {
                })
                .then(function (result) {
     
-                   var Genre = result.Genre;
+                   var Genre = resultGenre.Genre;
                    var today = moment().format('YYYY-MM-DD');
                    var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres" + Genre;
 
@@ -86,7 +86,7 @@ module.exports = function (app) {
                })
                .then(function (result) {
     
-                   var Genre = result.Genre;
+                   var Genre = resultGenre.Genre;
                    var today = moment().format('YYYY-MM-DD');
                    var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres=" + Genre;
 
