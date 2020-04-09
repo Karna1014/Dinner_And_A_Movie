@@ -1,61 +1,60 @@
-<div class="container">  
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-default" id="orderPanel">
-                <div class="panel-heading" id="order">
-                 <strong><p>Choose the movie you like to watch</p></strong>   
-                </div>
-                <div class="panel-body">
-
-                    <ul>
-                        {{#each movies}}
-                        {{#unless watched}}
-
-                        <span><strong> {{this.id}} - {{this.movie_name}}</strong></span>
-                        <button type="button" class="watchMovie btn btn-warning" id="watchMovie" data-id="{{this.id}}"
-                            data-newWatched="{{watch}}">Watch!</button>
-                        <hr>
-                        {{/unless}}
-                        {{/each}}
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default" id="delPanel">
-                <div class="panel-heading" id="watched"><strong><p>Remove movie when watched</p></strong>  
-                </div>
-                <div class="panel-body">
-                    <ul>
-                        {{#each moviess}}
-                        {{#if watched}}
-                        <span><strong> {{this.id}} - {{this.movie_name}}</strong></span>
-                        <button type="button" class="trashMovie btn btn-danger" id="trashbutton" data-id="{{this.id}}"
-                            data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
-                        <hr>
-                        {{/if}}
-                        {{/each}}
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="jumbotron">
-        <h1>Add Your Burger</h1>
-        <br>
-        <panel>
-            <form class="create-form">
-                <div class="form-group">
-                    <label class="forMovie" for="newMovie">Put burger name here!</label>
-                    <input type="text" id="newMovie" name="burger">
-                    <button type="submit" class="btn btn-primary" id="addMoive">
-                        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </form>
-        </panel>
-    </div>
+<div class="field">
+      <label class="label">Choose a Genre</label>
+      <div class="control">
+        <select id="resultGenre" type="text" class="input">   
+        </select>
+        <button id="searchGenre" style="font-size:26px; color:brown; background-color: cornsilk; border:1px solid">Choose Movie Genre</button>
+      </div>      
 </div>
+
+<div id="posters"> 
+
+</div>
+<script>
+    var queryUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&language=en-US";
+
+      $.ajax({
+        url: queryUrl,
+        method: "GET"
+      }).done(function(res){
+        var allGenre = res.genres;
+        for (i = 0; i < allGenre.length; i++){
+
+          $("select").append(
+            "<option value ='" + allGenre[i].id + "'>" + allGenre[i].name + "</option>"
+          );
+        };
+      });
+
+      var queryLimit = 8;
+      var today = moment().format("yyyy-mm-dd");
+
+      $("#searchGenre").on("click", function(){
+          event.preventDefault();
+          ("#resultGenre").empty();
+          var GenreId = $("select").val();
+          var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres" + Genre;
+
+          //https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=2020-04-09&vote_average.gte=6&with_genres28;
+
+        $.ajax({
+        url: queryUrl,
+        method: "GET"
+      }).done(function(res){
+          var movies = res.results;
+          for(var i = 0; i < movies.length; i++){
+              var posterUrl = movies[i].poster_path;
+                $("#posters").append(
+                "<ul style='list-style-type: none'><li>Movie ID: " +
+			        	movies[i].id + "</li><li>Movie Title: " +
+			        	movies[i].title + "</li><li>Release Date: " +
+			        	movies[i].release_date + "</li><li> <img style='width: 250px; height: auto' src='" +
+			        	posterURL + "'></li><li>Overview:<br>" +
+			        	movies[i].overview + "</li></ul><hr>"
+                );
+          };
+      });
+    });
+
+</script>
+
