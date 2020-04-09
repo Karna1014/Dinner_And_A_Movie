@@ -2,7 +2,9 @@
 const express = require("express");
 const sequelize = require("sequelize");
 const app = express();
+require("dotenv").config();
 
+console.log(process.env);
 
 // setting view port
 

@@ -1,7 +1,7 @@
 const firebase = require("firebase");
 
 var firebaseConfig = {
-    apiKey: "AIzaSyBOmny4mwrBq_uySxdWhy22Rfk1ax5uDB4",
+    apiKey: process.env.API_KEY,
     authDomain: "dinner-70925.firebaseapp.com",
     databaseURL: "https://dinner-70925.firebaseio.com",
     projectId: "dinner-70925",

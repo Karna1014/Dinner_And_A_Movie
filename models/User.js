@@ -1,28 +1,31 @@
-module.exports = function (sequelize, DataTypes) {
-    var User = sequelize.define("User", {
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        Genre: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        createdAt: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW
-        },
-        updatedAt: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define("User", { 
+      displayName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      email: {
+        type: DataTypes.STRING,
+        isEmail: true,
+      },
+      password: {
+        type: DataTypes.STRING,
+        validate: {
+          len: [6]
         }
-    });
-
-    return User;
+      },
+      uid: {
+        type: DataTypes.STRING
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },  
+      updatedAt: {
+          type: DataTypes.DATE,
+          defaultValue: DataTypes.NOW
+      }
+  });
+  
+  return User;
 };
