@@ -22,11 +22,11 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
     
-    Movie.associate = function(models) {
-      Author.hasMany(models.Dinner, {
-        onDelete: "cascade"
-      });
-    };
+    // Movie.associate = function(models) {
+    //   User.hasMany(models.Dinner, {
+    //     onDelete: "cascade"
+    //   });
+    // };
   
     return Movie;
   };
