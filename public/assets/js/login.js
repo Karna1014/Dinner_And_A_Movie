@@ -1,20 +1,26 @@
 
+// const firebase = require("firebase");
+// const fbApp = require("../../../config/fb-config");
 
-var firebaseConfig = {
-    apiKey: process.env,API_KEY,
-    authDomain: "dinner-70925.firebaseapp.com",
-    databaseURL: "https://dinner-70925.firebaseio.com",
-    projectId: "dinner-70925",
-    storageBucket: "dinner-70925.appspot.com",
-    messagingSenderId: "81278181735",
-    appId: "1:81278181735:web:e6441bc700eae6f17c8fc2",
-    measurementId: "G-7N41FQGW63"
+// firebase.auth().onAuthStateChanged(function(user) {
+//    console.log(user);
+//   });
+
+
+// firebase.auth().defaultAuth.createUser({
+//   email: "user#example.com",
+//   password: "secretPassword",
+//   displayName: req.body.username,
+//   }) 
+//   .then(function(userRecord){
+//     // A UserRecord representation of the newly created user is returned
+// console.log("Successfully created new user:", userRecord.uid);
+//   })
+
+function badEmail() {
+  if (email !== "verifiedEmail")
+  throw(badEmailMsg);
 };
 
-firebase.initializeApp(firebaseConfig);
-
-firebase.auth().onAuthStateChanged(function(user) {
-   console.log(user);
-  });
-
-console.log("login-js");
+var badEmailMsg = "Your emails don't match, please try again!"
+  
