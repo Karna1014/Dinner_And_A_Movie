@@ -6,29 +6,53 @@ var moment = require('moment');
 const nodemailer = require("nodemailer");
 
 module.exports = function (app) {
-
+  // let user = fb.currentUser;
     app.get("/", function (req, res) {
-        res.render("index");
+        res.render("login");
     });
-    app.get("/search-movie", function (req, res) {
-        res.render("search-movie");
+
+    app.get("/signup", function (req, res){
+      res.render("signup");
     });
-    
+  
+
+    // goes to 
+    app.get("/movie", function (req, res) {
+        res.render("movie");
+    });
 
     // POST route for new user
-    app.post("/api/add", function (req, res) {
+    app.post("/signup", function (req, res) {
+        fbApp.createUserWithEmailAndPassword(req.body.Email, req.body.pswd)
+        .then((data) => {
+          console.log(req.body);
 
+          db.Users.create({
+              email: req.body.email,
+              displayName: req.body.displayName,
+              //Genre: req.body.Genre,
+          }).then(function (results) {
+              res.json(results);
+          })
+      });
+    });
+
+    app.post("/login", function (req, res) {
+      let user = fbApp.currentUser;
+      console.log(user);
+      fbApp.signInWithEmailAndPassword(req.body.Email, req.body.pswd)
+      .then((data) => {
         console.log(req.body);
 
         db.Users.create({
             email: req.body.email,
-            userName: req.body.userName,
-            Genre: req.body.Genre,
+            displayName: req.body.displayName,
+            //Genre: req.body.Genre,
         }).then(function (results) {
             res.json(results);
-        });
-
+        })
     });
+  });
 
       //GET route for MYSQL id (when new user is created)
        app.get("/new/:id", function (req, res) {
