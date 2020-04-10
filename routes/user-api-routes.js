@@ -1,5 +1,8 @@
 
 //require("dotenv").config();
+//const express = require("express");
+const sequelize = require("sequelize");
+//const app = express();
 const request = require("request");
 var db = require("../models");
 var moment = require('moment');
@@ -17,8 +20,8 @@ module.exports = function (app) {
   
 
     // goes to 
-    app.get("/movie", function (req, res) {
-        res.render("movie");
+    app.get("/movie-dinner", function (req, res) {
+        res.render("movie-dinner");
     });
 
     // POST route for new user
@@ -32,7 +35,7 @@ module.exports = function (app) {
               displayName: req.body.displayName,
               //Genre: req.body.Genre,
           }).then(function (results) {
-              res.json(results);
+              res.send(results);
           })
       });
     });
@@ -40,19 +43,20 @@ module.exports = function (app) {
     app.post("/login", function (req, res) {
       let user = fbApp.currentUser;
       console.log(user);
-      fbApp.signInWithEmailAndPassword(req.body.Email, req.body.pswd)
+      fbApp.signInWithEmailAndPassword(req.body.email, req.body.pswd)
       .then((data) => {
         console.log(req.body);
 
-        db.Users.create({
-            email: req.body.email,
-            displayName: req.body.displayName,
-            //Genre: req.body.Genre,
-        }).then(function (results) {
-            res.json(results);
+        db.Users.findOne({
+          where: {
+              email: req.body.email
+          }
         })
+        }).then(function (results) {
+            res.send(results);
+        });
     });
-  });
+  
 
       //GET route for MYSQL id (when new user is created)
        app.get("/new/:id", function (req, res) {

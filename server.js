@@ -30,7 +30,7 @@ app.use(express.static("public"));
 // =============================================================
 //var routes = require("./routes/html-routes.js");
 
-app.use(require("./routes/user-api-routes"));
+require("./routes/user-api-routes")(app);
 
 // require("./routes/movie-api-routes.js")(app);
 // require("./routes/dinner-api-routes.js")(app);
