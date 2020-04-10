@@ -1,8 +1,9 @@
+require("dotenv").config();
 
 const express = require("express");
 const sequelize = require("sequelize");
 const app = express();
-require("dotenv").config();
+const fbApp = require("./config/fb-config");
 
 console.log(process.env);
 
@@ -27,9 +28,10 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-var routes = require("./routes/html-routes.js");
+//var routes = require("./routes/html-routes.js");
 
-app.use(routes);
+require("./routes/user-api-routes")(app);
+
 // require("./routes/movie-api-routes.js")(app);
 // require("./routes/dinner-api-routes.js")(app);
 

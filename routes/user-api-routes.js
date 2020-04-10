@@ -1,34 +1,62 @@
 
 //require("dotenv").config();
+//const express = require("express");
+const sequelize = require("sequelize");
+//const app = express();
 const request = require("request");
 var db = require("../models");
 var moment = require('moment');
 const nodemailer = require("nodemailer");
 
 module.exports = function (app) {
-
+  // let user = fb.currentUser;
     app.get("/", function (req, res) {
-        res.render("index");
+        res.render("login");
     });
-    app.get("/search-movie", function (req, res) {
-        res.render("search-movie");
+
+    app.get("/signup", function (req, res){
+      res.render("signup");
     });
-    
+  
+
+    // goes to 
+    app.get("/movie-dinner", function (req, res) {
+        res.render("movie-dinner");
+    });
 
     // POST route for new user
-    app.post("/api/add", function (req, res) {
+    app.post("/signup", function (req, res) {
+        fbApp.createUserWithEmailAndPassword(req.body.Email, req.body.pswd)
+        .then((data) => {
+          console.log(req.body);
 
+          db.Users.create({
+              email: req.body.email,
+              displayName: req.body.displayName,
+              //Genre: req.body.Genre,
+          }).then(function (results) {
+              res.send(results);
+          })
+      });
+    });
+
+    app.post("/login", function (req, res) {
+      let user = fbApp.currentUser;
+      console.log(user);
+      fbApp.signInWithEmailAndPassword(req.body.email, req.body.pswd)
+      .then((data) => {
         console.log(req.body);
 
-        db.Users.create({
-            email: req.body.email,
-            userName: req.body.userName,
-            Genre: req.body.Genre,
+        db.Users.findOne({
+          where: {
+              email: req.body.email
+          }
+        })
         }).then(function (results) {
-            res.json(results);
+            res.send(results);
         });
-
     });
+  
 
       //GET route for MYSQL id (when new user is created)
        app.get("/new/:id", function (req, res) {
@@ -37,9 +65,9 @@ module.exports = function (app) {
                        id: req.params.id
                    }
                })
-               .then(function (result) {
+               .then(function (resultGenre) {
 
-                   var Genre = result.Genre;
+                   var Genre = resultGenre.Genre;
                   // api_key=6bd7be41a26f54fd1b16437cf9ecfe5a;
                    var today = moment().format('YYYY-MM-DD');
                    var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres" + Genre;
@@ -62,7 +90,7 @@ module.exports = function (app) {
                })
                .then(function (result) {
     
-                   var Genre = result.Genre;
+                   var Genre = resultGenre.Genre;
                    var today = moment().format('YYYY-MM-DD');
                    var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres" + Genre;
 
@@ -86,7 +114,7 @@ module.exports = function (app) {
                })
                .then(function (result) {
     
-                   var Genre = result.Genre;
+                   var Genre = resultGenre.Genre;
                    var today = moment().format('YYYY-MM-DD');
                    var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres=" + Genre;
 

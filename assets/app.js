@@ -3,7 +3,7 @@ $(document).on("click", "#movie-submit", function (e) {
     e.preventDefault();
 
     // API query constantants
-    var movieAPIKey = "e703c9574a99f4f42772b7422d217e2e";
+    var movieAPIKey = "e703c9574a99f4f42772b7422d217e2e"; "6bd7be41a26f54fd1b16437cf9ecfe5a";
     var userMovies = [];
 
     // Variables for storing 3 movies from user.
@@ -20,6 +20,7 @@ $(document).on("click", "#movie-submit", function (e) {
     selectedMovie = Math.floor(Math.random() * (userMovies.length));
 
     var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + movieAPIKey + "&language=en-US&query=" + userMovies[selectedMovie] + "&page=1&include_adult=false";
+    var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres" + Genre;
 
     // AJAX call to movie database to get id of selectedMovie.
     if (userMovies[selectedMovie] !== "") {
@@ -44,12 +45,13 @@ $(document).on("click", "#movie-submit", function (e) {
                     if (response.total_results > 0) {
                         var randomResults = Math.floor(Math.random() * response.results.length);
                         var finalMovieSelection = (response.results[randomResults]);
-                        var year = movieYear(finalMovieSelection.release_date);
+                        var Genre = result.Genre;
                         var imgUrl = "https://image.tmdb.org/t/p/w200" + finalMovieSelection.poster_path;
+
 
                         currentPair.setCurrentMovie(
                             finalMovieSelection.original_title,
-                            year,
+                            Genre,
                             imgUrl,
                             finalMovieSelection.overview,
                         );
