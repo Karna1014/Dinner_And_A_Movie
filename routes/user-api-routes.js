@@ -5,23 +5,27 @@ const sequelize = require("sequelize");
 const app = express();
 const request = require("request");
 var db = require("../models");
-var moment = require('moment');
+var moment = require("moment");
 const nodemailer = require("nodemailer");
+//const fbApp = require("./config/fb-config");
 
 module.exports = function (app) {
   // let user = fb.currentUser;
     app.get("/", function (req, res) {
-        res.render("login");
+        res.render("login", {title: "Signin Page"});
     });
 
     app.get("/signup", function (req, res){
-      res.render("signup");
+      res.render("signup", {title: "Signup Page"});
     });
   
 
     // goes to 
     app.get("/movie-dinner", function (req, res) {
-        res.render("movie-dinner");
+        res.render("movie-dinner", {
+          title: "Movie-Dinner",
+          style: "movie-dinner.css"
+        });
     });
 
     // POST route for new user
@@ -33,7 +37,8 @@ module.exports = function (app) {
           db.Users.create({
               email: req.body.email,
               displayName: req.body.displayName,
-              //Genre: req.body.Genre,
+              Genre: req.body.Genre,
+              Dinner: req.body.Dinner,
           }).then(function (results) {
               res.send(results);
           })
