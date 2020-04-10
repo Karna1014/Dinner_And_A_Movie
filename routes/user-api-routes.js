@@ -1,8 +1,8 @@
 
 //require("dotenv").config();
-//const express = require("express");
+const express = require("express");
 const sequelize = require("sequelize");
-//const app = express();
+const app = express();
 const request = require("request");
 var db = require("../models");
 var moment = require('moment');
@@ -26,7 +26,7 @@ module.exports = function (app) {
 
     // POST route for new user
     app.post("/signup", function (req, res) {
-        fbApp.createUserWithEmailAndPassword(req.body.Email, req.body.pswd)
+        fbApp.createUserWithEmailAndPassword(req.body.email, req.body.pswd)
         .then((data) => {
           console.log(req.body);
 
