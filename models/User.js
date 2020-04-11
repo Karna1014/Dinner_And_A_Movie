@@ -1,9 +1,15 @@
 
 // Creating our User model
 
+
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", { 
-      displayName: {
+      id:  {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+      },
+    displayName: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -12,13 +18,10 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         isEmail: true
       },
-      uid: {
-        type: DataTypes.STRING
-      },
       createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
-      },  
+      } 
       // updatedAt: {
       //     type: DataTypes.DATE,
       //     defaultValue: DataTypes.NOW

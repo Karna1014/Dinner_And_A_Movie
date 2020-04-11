@@ -11,7 +11,7 @@ const login = require("../public/assets/js/login")
 const firebase = require("firebase");
 
 module.exports = function (app) {
-  // let user = fb.currentUser;
+ 
     app.get("/", function (req, res) {
         res.render("login", {title: "Signin Page"});
     });
@@ -33,8 +33,10 @@ module.exports = function (app) {
     app.post("/signup", function (req, res) {
         var user = firebase.auth().currentUser
         var email = req.body.email;
-        var password = req.body.pswd;
-       firebase.auth().createUserWithEmailAndPassword(email, password)
+        var password = req.body.pswd; 
+        var displayName = req.body.displayName;
+        var uid = req.body.uid;
+       firebase.auth().createUserWithEmailAndPassword(email, password, displayName, uid)
         .then(function() {
           console.log(user);
         })
@@ -48,15 +50,16 @@ module.exports = function (app) {
     app.post("/login", function (req, res) {
       var user = firebase.auth().currentUser
       console.log(user);
-     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.pswd)
+     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.pswd, 
+      req.body.displayName, req.body.uid)
       .then((data) => {
         console.log(req.body);
 
-        db.Users.findOne({
-          where: {
-              email: req.body.email
-          }
-        })
+        // db.Users.findOne({
+        //   where: {
+        //       email: req.body.email
+        //   }
+        // })
         }).then(function (results) {
             res.send(results);
         });
