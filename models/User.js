@@ -13,32 +13,13 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         isEmail: true
       },
-      // genre: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      //   validate: {
-      //     len: [1]
-      //   }
-      // },
-      // dinner: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      //   validate: {
-      //     len: [1]
-      //   }
-      // },
-      uid: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+  
       createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
       },  
   });
       User.associate = function(models) {
-    // Associating Author with Posts
-    // When an Author is deleted, also delete any associated Posts
           User.hasMany(models.Movie, {
           onDelete: "cascade"  
         });
