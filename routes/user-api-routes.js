@@ -48,8 +48,7 @@ module.exports = function (app) {
     
     // console.log(user);
     firebase
-      .auth()
-      .signInWithEmailAndPassword(req.body.email, req.body.pswd)
+      .auth().signInWithEmailAndPassword(req.body.email, req.body.pswd)
       .then((data) => {
         res.json({loggedIn: true});
       })
