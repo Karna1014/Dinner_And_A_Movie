@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
       createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
-      } 
+      }
       // updatedAt: {
       //     type: DataTypes.DATE,
       //     defaultValue: DataTypes.NOW
@@ -30,9 +30,9 @@ module.exports = function(sequelize, DataTypes) {
         freezeTableName: true
       }
   );
-  User.sync()
+ 
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   
-
   return User;
+  
 };

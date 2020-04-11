@@ -20,7 +20,7 @@
                     <input type="password" id="pswd" class="form-control" name="pswd">
                 </div>
                 <button class="btn btn-primary" data-toggle="button" id="login">Submit</button>
-                <button class="btn btn-lg btn-primary" data-toggle="button" id="pswdReset">Reset Password</button>    
+                <button class="btn btn-lg btn-primary" data-toggle="button" id="pswdReset">Reset Password</button>
                 <button class="btn btn-primary btn-lg" data-toggle="button" id="emailUpdate">Update Email</button>
             </form>
         </panel>
@@ -30,19 +30,20 @@
 
 <script>
     $("#login").on("click", function (event) {
-  event.preventDefault;
-  var userInfo = {
-      email: $("#email").val().trim(),
-      pswd: $("#pswd").val().trim()
-  }
-  $.ajax({
-      url: "/login",
-      method: "POST",
-      data: userInfo
-  })
-      .then(function (res) {
-          console.log(res);
-
-      })
-})
+        event.preventDefault();
+        var userInfo = {
+            email: $("#email").val().trim(),
+            pswd: $("#pswd").val().trim()
+        }
+        $.ajax({
+            url: "/api/authenticate",
+            method: "POST",
+            data: userInfo
+        })
+            .then(function (res) {
+                if(res.loggedIn) {
+                    $(document.location).attr("href", "/dashboard");
+                }
+            });
+    });
 </script>
