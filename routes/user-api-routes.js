@@ -1,5 +1,4 @@
 
-//require("dotenv").config();
 const express = require("express");
 const sequelize = require("sequelize");
 const app = express();
@@ -9,6 +8,7 @@ var moment = require("moment");
 const nodemailer = require("nodemailer");
 const login = require("../public/assets/js/login")
 const firebase = require("firebase");
+firebase.auth();
 
 module.exports = function (app) {
   // let user = fb.currentUser;
@@ -29,26 +29,29 @@ module.exports = function (app) {
         });
     });
 
-    // POST route for new user
+    //POST route for new user
     app.post("/signup", function (req, res) {
-        var user = firebase.auth().currentUser
-        var email = req.body.email;
-        var password = req.body.pswd;
-       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(function() {
-          console.log(user);
-        })
-        .catch(function(error) {
-          res.statusCode = 404; 
-         })
-         res.redirect("/");
-        });
-      
+        fb.createUserWithEmailAndPassword(req.body.email, req.body.pswd)
+        .then((data) => {
+          console.log(req.body);
+
+          db.Users.create({
+              displayName: req.body.displayName,
+              email: req.body.email,  
+              //genre: req.body.Genre,
+              // dinner: req.body.Dinner,
+              uid: req.body.uid,
+              createdAt: Date.now()
+          }).then(function (results) {
+              res.send(results);
+          })
+      });
+    });
 
     app.post("/login", function (req, res) {
-      var user = firebase.auth().currentUser
+      let user = fbApp.currentUser;
       console.log(user);
-     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.pswd)
+      fbApp.signInWithEmailAndPassword(req.body.email, req.body.pswd)
       .then((data) => {
         console.log(req.body);
 
@@ -62,42 +65,53 @@ module.exports = function (app) {
         });
     });
   
-
-      //GET route for MYSQL id (when new user is created)
-       app.get("/new/:id", function (req, res) {
-           db.Users.findOne({
-                   where: {
-                       id: req.params.id
-                   }
-               })
-               .then(function (resultGenre) {
-
-                   var Genre = resultGenre.Genre;
-                  // api_key=6bd7be41a26f54fd1b16437cf9ecfe5a;
-                   var today = moment().format('YYYY-MM-DD');
-                   var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres" + Genre;
-
-
-                   request(queryURL, function (error, response, body) {
-                      console.log('error:', error); // Print the error if one occurred
-                      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-                      res.render("profile", JSON.parse(body));
-                    });
-               });
+    app.post("/movie-dinner", function(req, res){
+      db.Movies.create({
+        genre: req.body.genreId,
+        dinner: req.body.dinner,  
+        // dinner: req.body.Dinner,
+        // uid: req.body.uid,
+        createdAt: Date.now()
+        }).then(function (results) {
+        res.send(results);
        });
-
+    })
+  
+    //search all users 
+    app.get("/api/Users", function(req, res) {
+      
+      db.Users.findAll({
+        include: [db.Movies]
+      }).then(function(dbUser) {
+        res.json(dbUser);
+      });
+    });
+  
+  //delete one user
+    app.delete("/api/Users/:id", function(req, res) {
+      db.Users.destroy({
+        where: {
+          id: req.params.id
+        }
+      }).then(function(dbUser) {
+        res.json(dbUser);
+      });
+    });
+  
+  
       //GET route for FB id (when existing user logs in)
        app.get("/current/:id", function (req, res) {
            db.Users.findOne({
                    where: {
                        id: req.params.id
-                   }
+                   },
+                   include: [db.Movies]
                })
                .then(function (result) {
     
-                   var Genre = resultGenre.Genre;
+                   var genreId = result.genre;
                    var today = moment().format('YYYY-MM-DD');
-                   var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres" + Genre;
+                   var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
 
 
                    request(queryURL, function (error, response, body) {
@@ -115,13 +129,14 @@ module.exports = function (app) {
             db.Users.findOne({
                    where: {
                        email: recipient
-                   }
+                   },
+                   include: [db.Movies]
                })
                .then(function (result) {
     
-                   var Genre = resultGenre.Genre;
+                   var genreId = result.genre;
                    var today = moment().format('YYYY-MM-DD');
-                   var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" + today + "&vote_average.gte=6&with_genres=" + Genre;
+                   var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
 
                    request(queryURL, function (error, response, body) {
                       console.log('error:', error); // Print the error if one occurred

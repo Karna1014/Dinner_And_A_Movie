@@ -1,6 +1,7 @@
 
 // Creating our User model
 
+
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", { 
       displayName: {
@@ -12,20 +13,35 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         isEmail: true
       },
+      // genre: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      //   validate: {
+      //     len: [1]
+      //   }
+      // },
+      // dinner: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      //   validate: {
+      //     len: [1]
+      //   }
+      // },
       uid: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
       },  
-      // updatedAt: {
-      //     type: DataTypes.DATE,
-      //     defaultValue: DataTypes.NOW
-      // }
   });
-  // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
-  
-
+      User.associate = function(models) {
+    // Associating Author with Posts
+    // When an Author is deleted, also delete any associated Posts
+          User.hasMany(models.Movie, {
+          onDelete: "cascade"  
+        });
+      }
   return User;
 };

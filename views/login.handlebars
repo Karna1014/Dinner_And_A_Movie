@@ -19,27 +19,15 @@
                     <label for="pswd">Password</label>
                     <input type="password" id="pswd" class="form-control" name="pswd">
                 </div>
-                <button class="btn btn-primary" id="login">Submit</button>
+                <button class="btn btn-primary-toggle" id="login">Submit</button>
+                <button class="btn-group btn-group-primary-toggle" id="pswdReset">Reset</button>
+                    <label class="btn btn-primary active">Password</label>
+                <button class="btn-group btn-group-primary-toggle" id="emailUpdate">Update</button>
+                    <label class="btn btn-primary active">Email</label>
             </form>
         </panel>
     </div>
 </div>
 
-<script>
-    $("#login").on("click", function (event) {
-        event.preventDefault;
-        var userInfo = {
-            email: $("#email").val().trim(),
-            pswd: $("#pswd").val().trim()
-        }
-        $.ajax({
-            url: "/login",
-            method: "POST",
-            data: userInfo
-        })
-            .then(function (res) {
-                console.log(res);
 
-            })
-    })
-</script>
+<script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
