@@ -1,0 +1,26 @@
+body{
+    background-image: url("https://wallpapercave.com/w/p4iaEa4");
+    background-size:100vw 100vh;
+  }
+  
+  #moviePanel{
+    opacity: 0.8;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .movie {
+    margin-top: 30px;
+    background-color:rgb(17, 14, 14);
+    color:white;
+    text-align: center;
+    font-size: 1.3em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  #results{
+    color:darkblue;
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  

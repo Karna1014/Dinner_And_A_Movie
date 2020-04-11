@@ -5,7 +5,7 @@ const sequelize = require("sequelize");
 const app = express();
 const request = require("request");
 var db = require("../models");
-var moment = require('moment');
+var moment = require("moment");
 const nodemailer = require("nodemailer");
 const login = require("../public/assets/js/login")
 const firebase = require("firebase");
@@ -13,17 +13,20 @@ const firebase = require("firebase");
 module.exports = function (app) {
  
     app.get("/", function (req, res) {
-        res.render("login");
+        res.render("login", {title: "Signin Page"});
     });
 
     app.get("/signup", function (req, res){
-      res.render("signup");
+      res.render("signup", {title: "Signup Page"});
     });
   
 
     // goes to 
     app.get("/movie-dinner", function (req, res) {
-        res.render("movie-dinner");
+        res.render("movie-dinner", {
+          title: "Movie-Dinner",
+          style: "movie-dinner.css"
+        });
     });
 
     // POST route for new user
@@ -43,18 +46,6 @@ module.exports = function (app) {
          res.redirect("/");
         });
       
-    //     .then((data) => {
-    //       console.log(req.body);
-
-    //       db.Users.create({
-    //           email: req.body.email,
-    //           displayName: req.body.displayName,
-    //           //Genre: req.body.Genre,
-    //       }).then(function (results) {
-    //           res.send(results);
-    //       })
-    //   });
-    // });
 
     app.post("/login", function (req, res) {
       var user = firebase.auth().currentUser
