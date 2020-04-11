@@ -7,7 +7,6 @@ const request = require("request");
 var db = require("../models");
 var moment = require("moment");
 const nodemailer = require("nodemailer");
-const login = require("../public/assets/js/login")
 const firebase = require("firebase");
 
 module.exports = function (app) {
@@ -31,14 +30,18 @@ module.exports = function (app) {
 
     // POST route for new user
     app.post("/signup", function (req, res) {
+        var database = firebase.database();
         var user = firebase.auth().currentUser
         var email = req.body.email;
         var password = req.body.pswd; 
         var displayName = req.body.displayName;
         var uid = req.body.uid;
-       firebase.auth().createUserWithEmailAndPassword(email, password, displayName, uid)
-        .then(function() {
-          console.log(user);
+       firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((data) => {
+          var newPostRef = postListRef.push();
+          newPostRef.set({
+              // ...
+          });
         })
         .catch(function(error) {
           res.statusCode = 404; 
@@ -49,9 +52,8 @@ module.exports = function (app) {
 
     app.post("/login", function (req, res) {
       var user = firebase.auth().currentUser
-      console.log(user);
-     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.pswd, 
-      req.body.displayName, req.body.uid)
+      // console.log(user);
+     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.pswd)
       .then((data) => {
         console.log(req.body);
 
@@ -61,7 +63,13 @@ module.exports = function (app) {
         //   }
         // })
         }).then(function (results) {
-            res.send(results);
+          if (user != null) {
+            user.providerData.forEach(function (profile) {
+              db.Users("displayName: " + profile.displayName);
+              console.log("Email: " + profile.email);
+            });
+          }
+            res.redirect("movie-dinner");
         });
     });
   

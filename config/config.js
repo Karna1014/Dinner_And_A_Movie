@@ -1,7 +1,7 @@
 module.exports = {
     development: {
       username: "root",
-      password: "Tha,bto7",
+      password: process.env.SEQUELIZE_PASSWORD,
       database: 'movie_dinner',
       details: {
         host: "localhost",
@@ -11,7 +11,7 @@ module.exports = {
     },
     test: {
       username: "root",
-      password: "Tha,bto7",
+      password: process.env.SEQUELIZE_PASSWORD,
       database: 'movie_dinner_test',
       details: {
         host: 'localhost',

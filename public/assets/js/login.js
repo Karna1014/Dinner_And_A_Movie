@@ -1,21 +1,9 @@
-$(document).ready(function() {
 
-$("#login").on("click", function (event) {
-  event.preventDefault;
-  var userInfo = {
-      email: $("#email").val().trim(),
-      pswd: $("#pswd").val().trim()
-  }
-  $.ajax({
-      url: "/login",
-      method: "POST",
-      data: userInfo
-  })
-      .then(function (res) {
-          console.log(res);
+// Get a reference to the database service
+var database = firebase.database();
 
-      })
-})
+
+
 //sync Users
   exports.syncUsers = functions.database.ref('/Users/{userId}')
   .onWrite(event => {
@@ -36,8 +24,8 @@ $("#login").on("click", function (event) {
 		})
  
 	}
-	console.log("INSERT/UPDATE User by Id:" + userId);
-	var INSERT_USER_SQL = "INSERT INTO `Users` (`userId`, `email`, `displayName`) VALUES (?, ?, ?)";
+	console.log("INSERT/UPDATE User by userId:" + userId);
+	var INSERT_USER_SQL = "INSERT INTO `Users` (`email`, `displayName`) VALUES (?, ?)";
 	var params = [
 		userId,
 		eventSnapshot.child("id") ? eventSnapshot.child("id").val() : null,
@@ -75,7 +63,6 @@ if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
       // Common errors could be invalid email and invalid or expired OTPs.
     });
   }
-});
 // $("#pswdReset").on("click", function (event) {
 //   event.preventDefault;
 //   var userInfo = {

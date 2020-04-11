@@ -1,3 +1,9 @@
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+     }
+
+
 body{
     background-image: url("https://wallpapercave.com/w/p4iaEa4");
     background-size:100vw 100vh;
