@@ -7,6 +7,8 @@ const request = require("request");
 var db = require("../models");
 var moment = require('moment');
 const nodemailer = require("nodemailer");
+const login = require("../public/assets/js/login")
+const firebase = require("firebase");
 
 module.exports = function (app) {
   // let user = fb.currentUser;
@@ -26,24 +28,36 @@ module.exports = function (app) {
 
     // POST route for new user
     app.post("/signup", function (req, res) {
-        fbApp.createUserWithEmailAndPassword(req.body.email, req.body.pswd)
-        .then((data) => {
-          console.log(req.body);
+        var user = firebase.auth().currentUser
+        var email = req.body.email;
+        var password = req.body.pswd;
+       firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(function() {
+          console.log(user);
+        })
+        .catch(function(error) {
+          res.statusCode = 404; 
+         })
+         res.redirect("/");
+        });
+      
+    //     .then((data) => {
+    //       console.log(req.body);
 
-          db.Users.create({
-              email: req.body.email,
-              displayName: req.body.displayName,
-              //Genre: req.body.Genre,
-          }).then(function (results) {
-              res.send(results);
-          })
-      });
-    });
+    //       db.Users.create({
+    //           email: req.body.email,
+    //           displayName: req.body.displayName,
+    //           //Genre: req.body.Genre,
+    //       }).then(function (results) {
+    //           res.send(results);
+    //       })
+    //   });
+    // });
 
     app.post("/login", function (req, res) {
-      let user = fbApp.currentUser;
+      var user = firebase.auth().currentUser
       console.log(user);
-      fbApp.signInWithEmailAndPassword(req.body.email, req.body.pswd)
+     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.pswd)
       .then((data) => {
         console.log(req.body);
 
