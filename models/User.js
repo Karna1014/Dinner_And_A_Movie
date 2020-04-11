@@ -3,7 +3,7 @@
 
 
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", { 
+  var User = sequelize.define("users", { 
       id:  {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -26,8 +26,11 @@ module.exports = function(sequelize, DataTypes) {
       //     type: DataTypes.DATE,
       //     defaultValue: DataTypes.NOW
       // }
-
-  });
+      }, {
+        freezeTableName: true
+      }
+  );
+ 
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   
   return User;
