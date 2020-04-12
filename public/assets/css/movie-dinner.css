@@ -1,13 +1,46 @@
+
+
+body{
+    background-image: url("../images/film.jpg");
+    background-size:100vw 100vh;
+  }
+
+/* Login style */
+
+#loginPage {
+  margin-top: 20px;
+}
+
+.dmh1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 50px;
+}
+
+.dmp {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+
+}
+
+.lead{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 30px;
+}
+label {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+}
+
+#enroll, #login, #pswdReset, #emailUpdate {
+  background-color: #490E63;
+  color: #F4EEDD;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
      }
-
-
-body{
-    background-image: url("https://wallpapercave.com/w/p4iaEa4");
-    background-size:100vw 100vh;
-  }
   
   #moviePanel{
     opacity: 0.8;

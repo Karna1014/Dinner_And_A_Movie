@@ -4,6 +4,7 @@ const express = require("express");
 const sequelize = require("sequelize");
 const app = express();
 const fbApp = require("./config/fb-config");
+const path = require("path");
 
 
 
@@ -25,6 +26,7 @@ app.set("view engine", "handlebars");
 
 // Static directory
 app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Routes
 // =============================================================
