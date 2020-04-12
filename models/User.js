@@ -3,7 +3,7 @@
 
 
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("users", { 
+  var User = sequelize.define("User", { 
       id:  {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -26,8 +26,6 @@ module.exports = function(sequelize, DataTypes) {
       //     type: DataTypes.DATE,
       //     defaultValue: DataTypes.NOW
       // }
-      }, {
-        freezeTableName: true
       }
   );
  

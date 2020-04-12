@@ -8,6 +8,11 @@ const nodemailer = require("nodemailer");
 const firebase = require("firebase");
 
 module.exports = function (app) {
+
+  app.get("/", function (req, res) {
+    res.render("login", { title: "Login Page" });
+  });
+
   app.get("/signup", function (req, res) {
     res.render("signup", { title: "Signup Page" });
   });
@@ -45,38 +50,37 @@ module.exports = function (app) {
   });
 
   app.post("/api/authenticate", function (req, res) {
-    
-    // console.log(user);
     firebase
-      .auth().signInWithEmailAndPassword(req.body.email, req.body.pswd)
+      .auth()
+      .signInWithEmailAndPassword(req.body.email, req.body.pswd)
       .then((data) => {
-        res.json({loggedIn: true});
+        res.json({ loggedIn: true });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         res.redirect("/");
       });
   });
 
-  app.get("/", function (req, res) {
-    res.render("login", { title: "Signin Page" });
-  });
+  
 
   app.get("/dashboard", function (req, res) {
     const user = firebase.auth().currentUser;
-    if(user) {
+    if (user) {
       console.log(user);
       db.User.findOne({
         where: {
           email: user.email,
         },
-      }).then((dbRes) => {
-        console.log(dbRes.displayName);
-        res.render("movie-dinner", { displayName: dbRes.displayName });
-      }).catch(err => {
-        console.log(err);
-        res.redirect("/");
-      });
+      })
+        .then((dbRes) => {
+          console.log(dbRes.displayName);
+          res.render("movie-dinner", { displayName: dbRes.displayName });
+        })
+        .catch((err) => {
+          console.log(err);
+          res.redirect("/");
+        });
     } else {
       res.redirect("/");
     }
