@@ -15,8 +15,7 @@ module.exports = function (app) {
   // goes to
   app.get("/movie-dinner", function (req, res) {
     res.render("movie-dinner", {
-      title: "Movie-Dinner",
-      style: "movie-dinner.css",
+      title: "Movie-Dinner"
     });
   });
 
@@ -41,7 +40,7 @@ module.exports = function (app) {
       .catch(function (error) {
         res.statusCode = 404;
       });
-    res.redirect("/");
+    res.redirect("/movie-dinner");
   });
 
   app.post("/api/authenticate", function (req, res) {
@@ -55,6 +54,23 @@ module.exports = function (app) {
         console.log(err);
         res.redirect("/");
       });
+  });
+
+  app.post("/movie-dinner", function (req, res) {
+    var genreId = req.body.genreId;
+    var genreName = req.body.genreName;
+    var UserId = req.body.UserId;
+    db.Movie.create({
+      genreId: genreId,
+      genreName: genreName,
+      UserId: UserId
+    }).then(function (res) {
+      console.log(res);
+    });
+  });
+
+  app.get("/", function (req, res) {
+    res.render("login", { title: "Signin Page" });
   });
 
   app.get("/dashboard", function (req, res) {
@@ -79,36 +95,49 @@ module.exports = function (app) {
     }
   });
 
-  //GET route for MYSQL id (when new user is created)
-  app.get("/new/:id", function (req, res) {
-    db.Users.findOne({
-      where: {
-        id: req.params.id,
-      },
-    }).then(function (resultGenre) {
-      var Genre = resultGenre.Genre;
-      // api_key=6bd7be41a26f54fd1b16437cf9ecfe5a;
-      var today = moment().format("YYYY-MM-DD");
-      var queryURL =
-        "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" +
-        today +
-        "&vote_average.gte=6&with_genres" +
-        Genre;
-
-      request(queryURL, function (error, response, body) {
-        console.log("error:", error); // Print the error if one occurred
-        console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
-        res.render("profile", JSON.parse(body));
-      });
+  //find all users
+  app.get("/api/users", function(req, res) {
+    
+    db.users.findAll({
+      include: [db.Movie]
+    }).then(function(dbUser) {
+      res.json(dbUser);
     });
   });
 
-  //GET route for FB id (when existing user logs in)
+  //find user by Id
+  app.get("/api/users/:id", function(req, res) {
+    db.users.findOne({
+      where: {
+        id: req.params.id
+      },
+      include:[db.Movie]
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  app.delete("/api/users/:id", function(req, res) {
+    db.users.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbUser) {
+      res.json(dbuser);
+    });
+  });
+
+
+  //GET route for MYSQL id (when new user is created)
+  
+
+  //GET route for user id (when existing user logs in)
   app.get("/current/:id", function (req, res) {
-    db.Users.findOne({
+    db.users.findOne({
       where: {
         id: req.params.id,
       },
+      include:[db.Movie]
     }).then(function (result) {
       var Genre = resultGenre.Genre;
       var today = moment().format("YYYY-MM-DD");
@@ -130,18 +159,14 @@ module.exports = function (app) {
   app.post("/email", function (req, res) {
     let recipient = req.body.email;
 
-    db.Users.findOne({
+    db.users.findOne({
       where: {
         email: recipient,
       },
     }).then(function (result) {
-      var Genre = resultGenre.Genre;
+      var genreId = resultGenre.genreId;
       var today = moment().format("YYYY-MM-DD");
-      var queryURL =
-        "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" +
-        today +
-        "&vote_average.gte=6&with_genres=" +
-        Genre;
+      var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
 
       request(queryURL, function (error, response, body) {
         console.log("error:", error); // Print the error if one occurred

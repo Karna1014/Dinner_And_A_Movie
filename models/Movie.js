@@ -1,16 +1,16 @@
 module.exports = function(sequelize, DataTypes) {
     var Movie = sequelize.define("Movie", {
-      genre: {
-        type: DataTypes.STRING,
+      genreId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           len: [1]
         }
       },
 
-      dinner: {
+      genreName: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
         validate: {
           len: [1]
         }
@@ -19,8 +19,6 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Movie.associate = function(models) {
-      // We're saying that a Post should belong to an Author
-      // A Post can't be created without an Author due to the foreign key constraint
       Movie.belongsTo(models.User, {
         foreignKey: {
           allowNull: false
