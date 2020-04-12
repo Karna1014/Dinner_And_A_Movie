@@ -4,8 +4,9 @@ const express = require("express");
 const sequelize = require("sequelize");
 const app = express();
 const fbApp = require("./config/fb-config");
+const path = require("path");
 
-console.log(process.env);
+
 
 // setting view port
 
@@ -25,6 +26,7 @@ app.set("view engine", "handlebars");
 
 // Static directory
 app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Routes
 // =============================================================
@@ -37,7 +39,8 @@ require("./routes/user-api-routes")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
+// { force: false, alter: true }
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
