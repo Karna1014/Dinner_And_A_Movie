@@ -56,10 +56,9 @@ a, a:hover, a:focus, a:active {
     font-size: 1.3em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
-  
-  #results{
-    color:darkblue;
-    font-size: 18px;
+  #movieList{
+    color:black;
+    font-size: 16px;
     font-family: 'Times New Roman', Times, serif;
   }
   

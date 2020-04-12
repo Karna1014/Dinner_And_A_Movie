@@ -8,10 +8,6 @@ const nodemailer = require("nodemailer");
 const firebase = require("firebase");
 
 module.exports = function (app) {
-  app.get("/", function (req, res) {
-    res.render("login", { title: "Login Page" });
-  });
-
   app.get("/signup", function (req, res) {
     res.render("signup", { title: "Signup Page" });
   });
