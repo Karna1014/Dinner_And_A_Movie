@@ -26,9 +26,15 @@ body{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 30px;
 }
+
 label {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
+}
+
+#emailHelp {
+  font-weight: bold;
+  font-size: 90%;
 }
 
 #enroll, #login, #pswdReset, #emailUpdate {
@@ -41,6 +47,29 @@ a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
      }
+/* SignUp Style */
+
+#signUpjbt {
+  margin-top: 20px;
+}
+
+#dmh1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 75px;
+}
+
+#submit {
+  background-color: #490E63;
+  color: #F4EEDD;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
+
+#displayHelp {
+  font-weight: bold;
+  font-size: 90%;
+}
+
   
   #moviePanel{
     text-align: center;
@@ -51,8 +80,8 @@ a, a:hover, a:focus, a:active {
   
   .movie {
     margin-top: 30px;
-    background-color:rgb(17, 14, 14);
-    color:white;
+    background-color: rgb(17, 14, 14);
+    color: #F4EEDD;
     text-align: center;
     font-size: 1.3em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -65,7 +94,61 @@ a, a:hover, a:focus, a:active {
     font-family: 'Times New Roman', Times, serif;
   }
   
-  li{
+  #movieP {
+    font-size:24px; 
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    background-color: black; 
+    color:azure; 
+    text-align: center; size:32px; 
+    padding: 5px;
+  } 
+
+  #genList {
+    height: 40px; 
+    width: 200px; 
+    padding: 5px; 
+    color:rgb(44, 6, 30); 
+    font-size:16px; 
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  #search {
+    /* background-color: #d28901;  */
+    background-color: #490E63;
+    border-radius: 5px; 
+    color: #F4EEDD;
+    /* color: rgb(5, 1, 7);  */
+    font-size: 24px; 
+    padding: 5px;
+    float: left;
+  }
+
+  #saveGenre {
+    background-color: #490E63;
+    /* background-color: #0f800c;  */
+    border-radius: 5px;
+    color:  #F4EEDD;
+    /* color:rgb(5, 1, 7);  */
+    font-size: 24px; 
+    padding:5px;
+    float: right;
+  }
+
+  #dinP {
+    font-size:24px; 
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  #dinSrch {
+    background-color: #490E63;
+    border-radius: 5px; 
+    color: #F4EEDD;
+    font-size: 24px; 
+    padding: 5px;
+    float: left;
+  }
+
+  li {
     margin-top: 15px;
     border-top: 1px dotted black;
   }
