@@ -20,7 +20,7 @@ module.exports = function (app) {
   });
 
   // POST route for new user
-  app.post("/signup", function (req, res) {
+  app.post("/api/signup", function (req, res) {
     var database = firebase.database();
     var user = firebase.auth().currentUser;
     var email = req.body.email;
@@ -57,7 +57,7 @@ module.exports = function (app) {
       });
   });
 
-  app.post("/movie-dinner", function (req, res) {
+  app.post("/api/movie-dinner", function (req, res) {
     var genreId = req.body.genreId;
     var genreName = req.body.genreName;
     db.Movie.create({
@@ -72,6 +72,12 @@ module.exports = function (app) {
     res.render("login", { title: "Signin Page" });
   });
 
+//---------------------------------------------------------------------------------
+  app.post("/api/", function(req,res){
+      res.redirect("/dashboard");
+  });
+//----------------------------------------------------------------------------------
+/////////problem need to be fixed
   app.get("/dashboard", function (req, res) {
     const user = firebase.auth().currentUser;
     if (user) {
@@ -81,24 +87,48 @@ module.exports = function (app) {
           email: user.email,
         },
       })
-        .then((dbRes) => {
-          console.log(dbRes.displayName);
-          res.render("movie-dinner", { displayName: dbRes.displayName });
+        .then(function(user) {
+          // console.log(dbRes.displayName);
+          // res.render("movie-dinner", { displayName: dbRes.displayName });
+          db.Movie.findOne({
+            where: user.id = db.Movie.id
+          })
         })
+        .then(function(res){
+          console.log(res);
+          // var genreId = db.Movie.genreId;
+          // res.redirect("movie-dinner");
+          var genreId = res.Movie.genreId;
+      var today = moment().format("YYYY-MM-DD");
+      var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
+
+      request(queryURL, function (error, response, body) {
+        console.log("error:", error); // Print the error if one occurred
+        console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+        var moviesBody = JSON.parse(body);
+        })
+     })
         .catch((err) => {
           console.log(err);
           res.redirect("/");
         });
     } else {
       res.redirect("/");
-    }
+    };
   });
 
   //find all users
   app.get("/api/users", function(req, res) {
     
-    db.users.findAll({
-      include: [db.Movie]
+    db.User.findAll({
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
+
+  app.get("/api/movies", function(req, res) {
+    
+    db.Movie.findAll({
     }).then(function(dbUser) {
       res.json(dbUser);
     });
@@ -106,34 +136,51 @@ module.exports = function (app) {
 
   //find user by Id
   app.get("/api/users/:id", function(req, res) {
-    db.users.findOne({
+    db.User.findOne({
       where: {
         id: req.params.id
       },
-      include:[db.Movie]
     }).then(function(dbUser) {
       res.json(dbUser);
     });
   });
 
-  app.delete("/api/users/:id", function(req, res) {
-    db.users.destroy({
+  // app.delete("/api/users/:id", function(req, res) {
+  //   db.User.destroy({
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   }).then(function(dbUser) {
+  //     res.json(dbuser);
+  //   });
+  // });
+
+  app.get("/api/movies/:id", function(req, res) {
+    db.Movie.findOne({
       where: {
         id: req.params.id
-      }
-    }).then(function(dbUser) {
-      res.json(dbuser);
+      },
+    }).then(function(dbMovie) {
+      res.json(dbMovie);
     });
   });
-  
 
+  // app.delete("/api/movies/:id", function(req, res) {
+  //   db.Movie.destroy({
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   }).then(function(dbMovie) {
+  //     res.json(dbMovie);
+  //   });
+  // });
+  
   //GET route for user id (when existing user logs in)
   app.get("/current/:id", function (req, res) {
-    db.users.findOne({
+    db.User.findOne({
       where: {
         id: req.params.id,
       },
-      include:[db.Movie]
     }).then(function (result) {
       var Genre = resul.genreId;
       var today = moment().format("YYYY-MM-DD");
@@ -151,7 +198,7 @@ module.exports = function (app) {
   app.post("/email", function (req, res) {
     let recipient = req.body.email;
 
-    db.users.findOne({
+    db.User.findOne({
       where: {
         email: recipient,
       },
