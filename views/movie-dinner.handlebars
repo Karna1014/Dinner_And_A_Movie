@@ -3,20 +3,20 @@
         
                 <div class="panel panel-default" id="moviePanel">
                     <div class="panel-heading" id="movie">
-                     <strong><p style="font-size:24px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: crimson; background-color: black; color:azure; text-align: center; size:32px; padding: 5px;">Treat yourself with a great movie!</p></strong>   
+                     <strong><p id="movieP">Treat yourself with a great movie!</p></strong>   
                     </div>
                     <div class="panel-body"> 
     
                       <h3 style="display:inline;">Select Genre:</h3>
                       <br><br>
                     
-                      <select style="height: 40px; width: 200px; padding: 5px; color:rgb(44, 6, 30); font-size:16px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"></select>
+                      <select id="genList"></select>
                     
                       <br><br>
                     
-                      <button id="search" style="background-color: #d28901; border-radius: 5px; color:rgb(5, 1, 7); font-size: 24px; padding:5px">Get Movies!</button>
+                      <button class="btn btn-lg" id="search">Get Movies!</button>
 
-                      <button id="saveGenre" style="background-color: #0f800c; border-radius: 5px; color:rgb(5, 1, 7); font-size: 24px; padding:5px">Save Genre!</button>
+                      <button class="btn btn-lg" id="saveGenre">Save Genre!</button>
                     
                     
                       <div id="movieList"></div>
@@ -94,21 +94,20 @@
                 data: Movie
             }).then(function(res){
                res.send();
-              });
-            });
+              });            });
         </script>                 
       </div>
 
          
       <div class="panel panel-default" id="dinnerPanel">
         <div class="panel-heading" id="dinner">
-          <strong><p style="font-size:24px; font-family: cursive;">Choose your dinner to go with movie!</p></strong>   
+          <strong><p id="dinP">Choose your dinner to go with movie!</p></strong>   
         </div>
         <div class="panel-body">
 
           
         
-          <button id="search" style="background-color: #d28901; border-radius: 5px; color:darkorchid; font-size: 24px; padding:5px">Get Dinner!</button>
+          <button class="btn btn-lg" id="dinSrch">Get Dinner!</button>
         
           <div id="dinner.List"></div>
           
