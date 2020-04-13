@@ -26,9 +26,15 @@ body{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 30px;
 }
+
 label {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
+}
+
+#emailHelp {
+  font-weight: bold;
+  font-size: 90%;
 }
 
 #enroll, #login, #pswdReset, #emailUpdate {
@@ -41,6 +47,29 @@ a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
      }
+/* SignUp Style */
+
+#signUpjbt {
+  margin-top: 20px;
+}
+
+#dmh1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 75px;
+}
+
+#submit {
+  background-color: #490E63;
+  color: #F4EEDD;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
+
+#displayHelp {
+  font-weight: bold;
+  font-size: 90%;
+}
+
   
   #moviePanel{
     opacity: 0.8;

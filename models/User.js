@@ -1,5 +1,3 @@
-// Creating our User model
-
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("user", {
     id: {
@@ -7,28 +5,22 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true,
     },
-
+    
     displayName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        len: [1]
+      }
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       isEmail: true,
+      validate: {
+      len: [1]
     }
     }, 
-    
-  )};
-
-
-
-// User.associate = function (models) {
-//   User.hasMany(models.Movie, {
-//     onDelete: "cascade",
-//   });
-
-  // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
-
-  User.sync();
-
+  });
+      return User;
+      };
