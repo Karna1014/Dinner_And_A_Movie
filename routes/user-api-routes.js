@@ -20,7 +20,7 @@ module.exports = function (app) {
   });
 
   // POST route for new user
-  app.post("/api/signup", function (req, res) {
+  app.post("/signup", function (req, res) {
     var database = firebase.database();
     var user = firebase.auth().currentUser;
     var email = req.body.email;
@@ -33,7 +33,7 @@ module.exports = function (app) {
       .then((data) => {
         db.User.create({
           displayName: displayName,
-          email: email,
+          email: email
         }).then(function (res) {
           console.log(res);
         });
@@ -57,7 +57,7 @@ module.exports = function (app) {
       });
   });
 
-  app.post("/api/movie-dinner", function (req, res) {
+  app.post("/movie-dinner", function (req, res) {
     var genreId = req.body.genreId;
     var genreName = req.body.genreName;
     db.Movie.create({
