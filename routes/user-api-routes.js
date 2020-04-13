@@ -26,6 +26,7 @@ module.exports = function (app) {
     var email = req.body.email;
     var password = req.body.pswd;
     var displayName = req.body.displayName;
+    var uid = req.body.uie;
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -59,11 +60,9 @@ module.exports = function (app) {
   app.post("/movie-dinner", function (req, res) {
     var genreId = req.body.genreId;
     var genreName = req.body.genreName;
-    var UserId = req.body.UserId;
     db.Movie.create({
       genreId: genreId,
-      genreName: genreName,
-      UserId: UserId
+      genreName: genreName
     }).then(function (res) {
       console.log(res);
     });
@@ -126,9 +125,6 @@ module.exports = function (app) {
       res.json(dbuser);
     });
   });
-
-
-  //GET route for MYSQL id (when new user is created)
   
 
   //GET route for user id (when existing user logs in)
@@ -139,13 +135,9 @@ module.exports = function (app) {
       },
       include:[db.Movie]
     }).then(function (result) {
-      var Genre = resultGenre.Genre;
+      var Genre = resul.genreId;
       var today = moment().format("YYYY-MM-DD");
-      var queryURL =
-        "https://api.themoviedb.org/3/discover/movie?api_key=6bd7be41a26f54fd1b16437cf9ecfe5a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=" +
-        today +
-        "&vote_average.gte=6&with_genres" +
-        Genre;
+      var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
 
       request(queryURL, function (error, response, body) {
         console.log("error:", error); // Print the error if one occurred
@@ -164,7 +156,7 @@ module.exports = function (app) {
         email: recipient,
       },
     }).then(function (result) {
-      var genreId = resultGenre.genreId;
+      var genreId = result.genreId;
       var today = moment().format("YYYY-MM-DD");
       var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
 
@@ -221,7 +213,7 @@ module.exports = function (app) {
         },
         include: [db.Movies],
       }).then(function (result) {
-        var genreId = result.genre;
+        var genreId = result.genreId;
         var today = moment().format("YYYY-MM-DD");
         var queryURL =
           "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" +
