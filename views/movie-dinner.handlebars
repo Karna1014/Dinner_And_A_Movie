@@ -1,7 +1,6 @@
  
 <div class="container">  
-        <div class="row">
-            <div class="col-sm-9">
+        
                 <div class="panel panel-default" id="moviePanel">
                     <div class="panel-heading" id="movie">
                      <strong><p style="font-size:24px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: crimson; background-color: black; color:azure; text-align: center; size:32px; padding: 5px;">Treat yourself with a great movie!</p></strong>   
@@ -21,7 +20,7 @@
                     
                     
                       <div id="movieList"></div>
-                    
+            </div>         
         <script>
             var queryURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US";
       
@@ -75,23 +74,19 @@
                 });
           });
             
-
+      //posting Movie data to backend
             $("#saveGenre").on("click", function(event){
             event.preventDefault();
-            var url = window.location.search;
             var genreId = $('select').val().trim();
             console.log(genreId);
-            var genreName = $('option').text().trim();
-            var UserId;
-            if (url.indexOf("?users_id=") !== -1) {
-            UserId = url.split("=")[1];
-              return UserId;
-            }
+            var genreName = $('select option:selected').text().trim();
+
             var Movie = {
-                genreId: $('select').val().trim(),
-                genreName: $('option').text().trim(),
-                UserId: UserId
+                genreId: genreId,
+                genreName: genreName
             }
+
+            console.log(Movie);
 
             $.ajax({
                 url: "/movie-dinner",
@@ -101,30 +96,22 @@
                res.send();
               });
             });
-        </script>    
-    
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="panel panel-default" id="dinnerPanel">
-                    <div class="panel-heading" id="dinner">
-                     <strong><p style="font-size:24px; font-family: cursive;">Choose your dinner to go with movie!</p></strong>   
-                    </div>
-                    <div class="panel-body">
-    
-                      <h3 style="display:inline;">Select Recipe:</h3>
-                      <br><br>
-                    
-                      <select style="height: 40px; width: 200px; padding: 5px; color:rgb(44, 6, 30); font-size:20px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"></select>
-                    
-                      <br><br>
-                    
-                      <button id="search" style="background-color: #d28901; border-radius: 5px; color:darkorchid; font-size: 24px; padding:5px">Get Dinner!</button>
-                    
-                      <div id="movieList"></div>
-                      
-    
-                    </div>
-                </div>
-            </div>
+        </script>                 
+      </div>
+
+         
+      <div class="panel panel-default" id="dinnerPanel">
+        <div class="panel-heading" id="dinner">
+          <strong><p style="font-size:24px; font-family: cursive;">Choose your dinner to go with movie!</p></strong>   
+        </div>
+        <div class="panel-body">
+
+          
+        
+          <button id="search" style="background-color: #d28901; border-radius: 5px; color:darkorchid; font-size: 24px; padding:5px">Get Dinner!</button>
+        
+          <div id="dinner.List"></div>
+          
+      </div>
+    </div>
+  </div>

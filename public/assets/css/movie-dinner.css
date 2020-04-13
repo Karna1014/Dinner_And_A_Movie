@@ -72,6 +72,7 @@ a, a:hover, a:focus, a:active {
 
   
   #moviePanel{
+    text-align: center;
     opacity: 0.8;
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
