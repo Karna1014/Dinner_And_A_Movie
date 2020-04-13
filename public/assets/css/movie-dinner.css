@@ -87,6 +87,8 @@ a, a:hover, a:focus, a:active {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
   #movieList{
+    margin-top: 20px;
+    border-top: 2px solid black;
     color:black;
     font-size: 16px;
     font-family: 'Times New Roman', Times, serif;
@@ -144,5 +146,10 @@ a, a:hover, a:focus, a:active {
     font-size: 24px; 
     padding: 5px;
     float: left;
+  }
+
+  li {
+    margin-top: 15px;
+    border-top: 1px dotted black;
   }
   
