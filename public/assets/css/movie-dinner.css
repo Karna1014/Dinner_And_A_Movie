@@ -1,7 +1,7 @@
 
 
   body{
-      background-image: url("../images/film.jpg");
+      background-image: url("../images/moviephoto.jpg");
       background-size:100vw 100vh;
     }
 
@@ -11,6 +11,11 @@
     margin-top: 20px;
   }
 
+  .mainJumbo{
+    background-color: #8723af;
+    margin: 30px;
+    color: white
+  }
   .dmh1 {
     font-family: 'Lobster', cursive;
     font-size: 50px;
@@ -107,7 +112,7 @@
   /* Movie-Dinner Page styling */
   #moviePanel{
     text-align: center;
-    opacity: 0.8;
+    /* opacity: 0.8; */
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
@@ -218,7 +223,7 @@
 
  #dinnerPanel{
   text-align: center;
-  opacity: 0.8;
+  /* opacity: 0.8; */
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
