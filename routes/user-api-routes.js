@@ -27,7 +27,7 @@ module.exports = function (app) {
     var email = req.body.email;
     var password = req.body.pswd;
     var displayName = req.body.displayName;
-    //var uid = req.body.uid;
+    var uid = req.body.uid;
     var uid;
     firebase
       .auth()
@@ -192,6 +192,7 @@ module.exports = function (app) {
   //     res.json(dbMovie);
   //   });
   // });
+
  
   //Need to be fix minor connection issue
   app.get("/send", function(req, res){
