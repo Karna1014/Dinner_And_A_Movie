@@ -21,13 +21,14 @@
                     
                       <br><br>
                     
-                      <button class="btn btn-lg" id="search">Get Movies!</button>
+                      <button class="btn btn-lg" id="search"type="button" >Get Movies!</button>
                       <button class="btn btn-lg" id="dshbdRtn" onclick="window.location.href='/dashboard'">DashBoard</button>
                       <button class="btn btn-lg" id="saveGenre">Save Genre!</button>
                     
                     
                       <div id="movieList"></div>
                     </div>
+                  
                   </div>         
         <script src="/assets/js/movie-dinner.js"></script>
            
@@ -52,20 +53,19 @@
           </form>
 
           <div class="row">
-       
-        <div class="col-sm-12">
+             <div class="col-sm-12">
           <br>
   
-          <!-- This card will initially be made up of a card and wells for each of the recipes retrieved -->
-          <div class="card">
+              <!-- This card will initially be made up of a card and wells for each of the recipes retrieved -->
+              <div class="card">
   
-            <!-- card Heading for the retrieved articles box -->
-            <div class="card-header">
-              <strong>
-                <i class="fa fa-table"></i> Top Recipes</strong>
-            </div>
+            <!-- card Heading for the retrieved recipes box -->
+              <div class="card-header">
+                <strong>
+                  <i class="fa fa-table"></i> Top Recipes</strong>
+              </div>
   
-            <!-- This main card will hold each of the resulting articles -->
+            <!-- This main card will hold each of the resulting recipes -->
             <div class="card-body" id="recipe-view">
             </div>
           </div>
