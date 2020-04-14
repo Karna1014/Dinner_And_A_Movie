@@ -103,7 +103,7 @@ $("#find-recipe").on("click", function(event) {
 
   // HTML Elements to dynamically populate to page with items from the AJAX call.
                       var recipeName = $('<h2 id="name" align="center">').text(item.title);
-                      var recipeURL = $('<a id="atag">').attr("href", item.href).append(recipeName);
+                      var recipeURL = $('<a id="atag" target="_blank">').attr("href", item.href).append(recipeName);
                       var ingred = $('<h4 id="ingred" align="center">').text("Main Ingredients: " + item.ingredients);
                       var image = $('<img id="image" align="middle">').attr("src", item.thumbnail);
                       var hr = $('<hr id="line">');
