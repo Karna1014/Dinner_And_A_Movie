@@ -32,7 +32,7 @@ $("#login").on("click", function (event) {
          }
          
         if (res.loggedIn) {
-                   window.location.href="/dashboard"
+                   window.location.href="/movie-dinner"
          } else {
              $("#loginError").css("display", "block");
          }

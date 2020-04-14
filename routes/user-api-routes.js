@@ -84,24 +84,29 @@ module.exports = function (app) {
           where: user.id = db.Movie.UserId
         }).then(function(data) {
           
-          moviesToReturn = [];
-          for (var i = 0; i < data.length; i++) {
-            if (moviesToReturn.indexOf(data[i].dataValues.genreName) == -1) {
-              moviesToReturn.push(data[i].dataValues.genreName);
+          //console.log(data);  
+         moviesToReturn = [];
+        for (var i = 0; i < data.length; i++) { 
+
+            if (moviesToReturn.indexOf(data[data.length-1].dataValues.genreName) == -1) {
+              
+              
+              moviesToReturn.push(data[data.length-1].dataValues.genreName);
             }
           }
           
             var hbsObject = {
               movies: moviesToReturn,
+              //movies:movieList.genreName,
               email: user.email,
               displayName: user.displayName
           };
-
+        
           res.render("dashboard", hbsObject);
         });
-      });
+      })   
     }
-  })
+  });
 
   app.post("/movie-dinner", function (req, res) {
   var genreId = req.body.genreId;
@@ -122,9 +127,9 @@ module.exports = function (app) {
   });
 
 //---------------------------------------------------------------------------------
-  app.post("/api/", function(req,res){
-      res.redirect("/dashboard");
-  });
+  // app.post("/api/", function(req,res){
+  //     res.redirect("/dashboard");
+  // });
 //
   //find all users
   app.get("/api/users", function(req, res) {
@@ -187,13 +192,67 @@ module.exports = function (app) {
   //     res.json(dbMovie);
   //   });
   // });
-  
 
-  // GET route for user id (when existing user logs in)
  
+  //Need to be fix minor connection issue
+  app.get("/send", function(req, res){
 
-  // app.get("/email", function(req, res)
-  //   res.render("email", { title: "email Page" });
-   
+    res.render("send", { title: "email Page" });
+  });
   //POST route for nodemailer
-  }
+  app.post("/send", function (req, res) {
+    
+     db.User.findOne({
+      // var recipient =req.body.email;
+
+       where: {
+         email: req.body.email,
+       },
+       include: [db.Movie]
+    }).then(function (result) {
+      console.log(result);
+      var genreId = result.genreId;
+      var today = moment().format("YYYY-MM-DD");
+       var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
+
+       request(queryURL, function (error, response, body) {
+         console.log("error:", error); // Print the error if one occurred
+         console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+         var moviesBody = JSON.parse(body);   
+         var imgToEmail = " <img src='https://image.tmdb.org/t/p/w500/" + movies[i].poster_path; + "' />";     
+        console.log("Nodemailer sending to: " + result.email);
+
+         let transporter = nodemailer.createTransport({
+           service: "gmail",
+           auth: {
+             user: "yousue891@gmail.com",
+             pass: "Tha,bto7",
+           },
+           tls: {
+             rejectUnauthorized: false,
+           },
+         });
+
+         let mailOptions = {
+          from: "yousue891@gmail.com",
+          replyTo: "youseu891@gmail.com",
+           to: recipient,
+           subject: "Here are the movies you requested!",
+           text: "'" + moviesBody.results[0].title + "', Release Date: " + moviesBody.results[0].release_date
+                      };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Email sent");
+          }
+        });
+
+        console.log("Movies successfully sent: " + moviesBody);
+
+        res.send(true);
+      });
+    });
+  });
+ };

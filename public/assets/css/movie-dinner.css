@@ -1,7 +1,7 @@
 
 
   body{
-      background-image: url("../images/film.jpg");
+      background-image: url("../images/moviephoto.jpg");
       background-size:100vw 100vh;
     }
 
@@ -9,11 +9,25 @@
 
   #loginPage {
     margin-top: 20px;
+    padding: 0px;
+    box-shadow: 10px 25px 18px red
   }
 
+  .mainJumbo{
+    background-color: #8723af;
+    margin: 30px;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 5px 10px 18px red
+  }
   .dmh1 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Lobster', cursive;
     font-size: 50px;
+  }
+
+  #dmh2 {
+    font-family: 'Lobster', cursive;
+    font-size: 25px;
   }
 
   .dmp {
@@ -51,10 +65,11 @@
 
   #signUpjbt {
     margin-top: 20px;
+    box-shadow: 10px 25px 18px red
   }
 
   #dmh1 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Lobster', cursive;
     font-size: 75px;
   }
 
@@ -75,10 +90,11 @@
 
   #dashbrdjbt {
     margin-top: 20px;
+    box-shadow: 10px 25px 18px red
   }
 
   #dmh1DB {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Lobster', cursive;
     font-size: 75px;
     text-align: center;
   }
@@ -105,8 +121,11 @@
 
   /* Movie-Dinner Page styling */
   #moviePanel{
+    width: 80%;
     text-align: center;
-    opacity: 0.8;
+    background: rgb(248, 246, 241);
+    box-shadow: 10px 25px 18px rgb(233, 224, 224);
+    margin-left: 100px;
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
@@ -129,7 +148,7 @@
   
   #movieP {
     font-size:24px; 
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    font-family: 'Lobster', cursive; 
     background-color: black; 
     color:azure; 
     text-align: center; size:32px; 
@@ -179,16 +198,40 @@
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
-  #dinSrch {
-    background-color: #490E63;
-    border-radius: 5px; 
-    color: #F4EEDD;
-    font-size: 24px; 
-    padding: 5px;
-    float: left;
-  }
-
   li {
     margin-top: 15px;
   }
-  
+
+  /* Styling for dinner section */
+  #image{
+    height: 180px;
+    width: 210px;
+    box-shadow: 5px 10px 8px #8723af
+ }
+ 
+ #find-recipe{
+      background-color: #490E63;
+      border-radius: 5px; 
+      color: #F4EEDD;
+      font-size: 20px; 
+     margin-top: 5px;
+     margin-right: 20px;
+     margin-bottom: 5px;
+     margin-left: 10px;
+     padding: 5px;
+ }
+
+ h2:hover{
+    color: rgb(63, 38, 206);
+ }
+
+ #dinnerPanel{
+  width: 80%;
+  background-color: rgb(248, 246, 241);
+  box-shadow: 10px 25px 18px rgb(160, 99, 201);
+  margin-left: 100px;
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+ 
