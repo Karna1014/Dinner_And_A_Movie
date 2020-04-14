@@ -1,7 +1,7 @@
 
 
   body{
-      background-image: url("../images/moviephoto.jpg");
+      background-image: url("../images/movie3.jpg");
       background-size:100vw 100vh;
     }
 
@@ -14,11 +14,17 @@
   .mainJumbo{
     background-color: #8723af;
     margin: 30px;
-    color: white
+    color: white;
+    box-shadow: 5px 10px 18px red
   }
   .dmh1 {
     font-family: 'Lobster', cursive;
     font-size: 50px;
+  }
+
+  #dmh2 {
+    font-family: 'Lobster', cursive;
+    font-size: 25px;
   }
 
   .dmp {
