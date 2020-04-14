@@ -191,4 +191,28 @@
   li {
     margin-top: 15px;
   }
-  
+  #image{
+    height: 180px;
+    width: 210px;
+ }
+ 
+ #find-recipe{
+      background-color: #490E63;
+      border-radius: 5px; 
+      color: #F4EEDD;
+      font-size: 20px; 
+     margin-top: 5px;
+     margin-right: 20px;
+     margin-bottom: 5px;
+     margin-left: 10px;
+     padding: 5px;
+ }
+
+
+ #dinnerPanel{
+  text-align: center;
+  opacity: 0.8;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+ 
