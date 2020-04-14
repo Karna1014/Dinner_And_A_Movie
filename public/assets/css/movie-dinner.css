@@ -196,6 +196,7 @@
   #image{
     height: 180px;
     width: 210px;
+    box-shadow: 5px 10px 8px #8723af
  }
  
  #find-recipe{
@@ -210,6 +211,9 @@
      padding: 5px;
  }
 
+ h2:hover{
+    color: rgb(63, 38, 206);
+ }
 
  #dinnerPanel{
   text-align: center;
