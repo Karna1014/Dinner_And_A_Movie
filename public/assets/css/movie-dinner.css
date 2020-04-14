@@ -9,12 +9,15 @@
 
   #loginPage {
     margin-top: 20px;
+    padding: 0px;
+    box-shadow: 10px 25px 18px red
   }
 
   .mainJumbo{
     background-color: #8723af;
     margin: 30px;
     color: white;
+    border-radius: 10px;
     box-shadow: 5px 10px 18px red
   }
   .dmh1 {
@@ -118,7 +121,6 @@
   /* Movie-Dinner Page styling */
   #moviePanel{
     text-align: center;
-    /* opacity: 0.8; */
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
@@ -191,15 +193,6 @@
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
-  #dinSrch {
-    background-color: #490E63;
-    border-radius: 5px; 
-    color: #F4EEDD;
-    font-size: 24px; 
-    padding: 5px;
-    float: left;
-  }
-
   li {
     margin-top: 15px;
   }
@@ -229,7 +222,6 @@
 
  #dinnerPanel{
   text-align: center;
-  /* opacity: 0.8; */
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
