@@ -3,7 +3,7 @@
         <h1 class="display-4" id="dmh1">Dinner And A Movie</h1>
             <br>
             <panel>
-                <form method="POST" action="/signup">
+                <form>
                         <div class="form-group">
                             <label for="displayName">Display Name</label>
                             <input type="displayName" id="displayName" class="form-control" name="displayName" aria-describedby="displayName">
@@ -11,20 +11,22 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" id="email" class="form-control" name="email" aria-describedby="emailHelp">
+                            <input type="email" id="registerEmail" class="form-control" name="email" aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="emailVerified">Confirm Email address</label>
-                            <input type="email"  class="form-control" name="emailVerified" aria-describedby="emailHelp">
+                            <input type="email"  class="form-control" name="emailVerified" id="emailVerified" aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="pswd">Password</label>
-                            <input type="password" id="pswd" class="form-control" name="pswd">
+                            <input type="password" id="registerPswd" class="form-control" name="pswd">
                         </div>
+                        <p id="emailError" style="display: none;" class="text-danger">Email mismatch! Please try again!</p>
                         <button type="submit" id="submit" class="btn btn-lg btn-primary">Submit</button>
                     </form>
             </panel>
     </div>
 </div>
+<script src="/assets/js/signup.js"></script>

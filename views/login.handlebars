@@ -6,58 +6,38 @@
             find you some options to watch. Tell us what you have in your pantry/fridge, we'll help you find a
             recipe. Enjoy!
         </p>
-        
-            <div class="container">
-                <h2 class="lead" id="dmh2">1st time visiting - create a login</h2>
-                <button class="btn btn-lg" id="enroll" role="button">
-                    <a href="/signup">Create Login</a></button>
-            </div>
-            <div class="container">
-                <h2 class="lead" id="dmh2">Returning? Login to select an old favorite or create a new one.</h2>
-                <hr class="my-4">
-                <br>
-                <panel>
-                    <form>
-                        <div class="form-group">
-                            <label for="Email">Email Address</label>
-                            <input type="email" id="email" class="form-control" name="Email"
-                                aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="pswd">Password</label>
-                            <input type="password" id="pswd" class="form-control" name="pswd">
-                        </div>
-                        <button class="btn btn-lg btn-primary" data-toggle="button" id="login">Submit</button>
-                        <button class="btn btn-lg btn-primary" data-toggle="button" id="pswdReset">Reset
-                            Password</button>
-                        <button class="btn btn-primary btn-lg" data-toggle="button" id="emailUpdate">Update
-                            Email</button>
-                    </form>
-                </panel>
-            </div>
-        
+
+        <div class="container">
+            <h2 class="lead" id="dmh2">1st time visiting - create a login</h2>
+            <button class="btn btn-lg" id="enroll" role="button">
+                <a href="/signup">Create Login</a></button>
+        </div>
+        <div class="container">
+            <h2 class="lead" id="dmh2">Returning? Login to select an old favorite or create a new one.</h2>
+            <hr class="my-4">
+            <br>
+            <panel>
+                <form>
+                    <div class="form-group">
+                        <label for="Email">Email Address</label>
+                        <input type="email" id="email" class="form-control" name="Email" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="pswd">Password</label>
+                        <input type="password" id="pswd" class="form-control" name="pswd">
+                    </div>
+                    <p id="loginError" style="display: none;" class="text-danger">Error logging in. Please try again!</p>
+                    <button class="btn btn-lg btn-primary" data-toggle="button" id="login">Submit</button>
+                    <button class="btn btn-lg btn-primary" data-toggle="button" id="pswdReset">Reset
+                        Password</button>
+                    <button class="btn btn-primary btn-lg" data-toggle="button" id="emailUpdate">Update
+                        Email</button>
+                </form>
+            </panel>
+        </div>
+
     </div>
 </div>
-
-
-    <script>
-        $("#login").on("click", function (event) {
-            event.preventDefault();
-            var userInfo = {
-                email: $("#email").val().trim(),
-                pswd: $("#pswd").val().trim()
-            }
-            $.ajax({
-                url: "/api/authenticate",
-                method: "POST",
-                data: userInfo
-            })
-                .then(function (res) {
-                    if (res.loggedIn) {
-                        $(document.location).attr("href", "/dashboard");
-                    }
-                });
-        });
-    </script>
+<script src="/assets/js/login.js"></script>

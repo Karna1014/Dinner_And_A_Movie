@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="jumbotron" id="dashbrdjbt">
+        <h1 class="display-4" id="dmh1">Dinner And A Movie</h1>
+        <br>
+        <panel>
+            <div class="col md 12" style="text-align:center">
+                <h2>Hello {{this.displayName}}!</h2>
+                <h2>Email: {{this.email}}</h2>
+            </div>
+            <div class="row">
+                <div class="col md 6">
+                    <h2>Fav Movies</h2>
+                    <u1>
+                        {{#each movies}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    </u1>
+                </div>
+                <button type="submit" id="submit" class="btn btn-md" onclick="window.location.href='/movie-dinner'">Search</button>
+            </div>
+        </panel>
+    </div>
+</div>
