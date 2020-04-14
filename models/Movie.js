@@ -15,16 +15,18 @@ module.exports = function(sequelize, DataTypes) {
           len: [1]
         }
       },
-
     });
 
-    // Movie.associate = function(models) {
-    //   Movie.belongsTo(models.User, {
-    //     foreignKey: {
-    //       allowNull: false
-    //     }
-    //   });
-    // };
+    Movie.associate = function(models) {
+      // We're saying that a Movie should belong to a User
+      // A Movie can't be created without a User due to the foreign key constraint
+      Movie.belongsTo(models.User, {
+        foreignKey: {
+          allowNull: false
+        }
+      });
+    };
+
   
     return Movie;
   };
