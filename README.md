@@ -43,7 +43,7 @@ Project 2 is a full-stack web application.
    **Email: karna.cutolo@gmail.com**
    **Email: jasminrowdy@gmail.com**
    **Email: rtpice.mu@gmail.com**
-   **Email: 
+   **Email: nguyenvmolly@gmail.com**
      
    #### Images: 
 
