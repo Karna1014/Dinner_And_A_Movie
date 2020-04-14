@@ -123,6 +123,7 @@
     width: 80%;
     text-align: center;
     background: rgb(248, 246, 241);
+    box-shadow: 10px 25px 18px rgb(233, 224, 224);
     margin-left: 100px;
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -226,6 +227,7 @@
  #dinnerPanel{
   width: 80%;
   background-color: rgb(248, 246, 241);
+  box-shadow: 10px 25px 18px rgb(160, 99, 201);
   margin-left: 100px;
   text-align: center;
   font-size: 20px;
