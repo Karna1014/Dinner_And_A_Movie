@@ -11,12 +11,7 @@ $("#login").on("click", function (event) {
          method: "POST",
          data: userInfo
      })
-    //$.post("/api/authenticate",{
-      //  email:email,
-        //pswd:pswd
-   // }, function(user){
-        //window.location.href ="/dashboard";
-    //})
+    
      .then(function (res) {
          if (res.loggedInUser) {
              if (localStorage.getItem("loggedInUser")) {
@@ -37,8 +32,7 @@ $("#login").on("click", function (event) {
          }
          
         if (res.loggedIn) {
-        //     //     // $(document.location).attr("href", "/dashboard");
-            window.location.href="/dashboard"
+                   window.location.href="/dashboard"
          } else {
              $("#loginError").css("display", "block");
          }

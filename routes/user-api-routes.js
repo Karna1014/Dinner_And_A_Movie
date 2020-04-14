@@ -26,7 +26,6 @@ module.exports = function (app) {
     var email = req.body.email;
     var password = req.body.pswd;
     var displayName = req.body.displayName;
-    //var uid = req.body.uid;
     var uid;
     firebase
       .auth()
@@ -124,47 +123,7 @@ module.exports = function (app) {
       res.redirect("/dashboard");
   });
 //----------------------------------------------------------------------------------
-/////////problem need to be fixed
-/*
-  app.get("/dashboard", function (req, res) {
-    const user = firebase.auth().currentUser;
-    if (user) {
-      console.log(user);
-      db.User.findOne({
-        where: {
-          email: user.email,
-        },
-     })
-        .then(function(user) {
-          console.log(dbRes.displayName);
-           res.render("movie-dinner", { displayName: dbRes.displayName });
-          db.Movie.findOne({
-           where: user.id = db.Movie.id
-         })
-        })
-        .then(function(res){
-          console.log(res);
-      var genreId = db.Movie.genreId;
-    res.redirect("movie-dinner");
-          var genreId = res.Movie.genreId;
-      var today = moment().format("YYYY-MM-DD");
-      var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
 
-       request(queryURL, function (error, response, body) {
-        console.log("error:", error); // Print the error if one occurred
-        console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
-       var moviesBody = JSON.parse(body);
-       })
-     })
-        .catch((err) => {
-          console.log(err);
-          res.redirect("/");
-         });
-    } else {
-       res.redirect("/");
-     };
-   });
-   */
   //find all users
   app.get("/api/users", function(req, res) {
     
@@ -174,13 +133,7 @@ module.exports = function (app) {
     });
   });
 
-  // app.get("/api/movies", function(req, res) {
-    
-  //   db.Movie.findAll({
-  //   }).then(function(dbUser) {
-  //     res.json(dbUser);
-  //   });
-  // });
+  
 
   //find user by Id
   app.get("/api/users/:id", function(req, res) {

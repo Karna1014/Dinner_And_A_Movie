@@ -1,76 +1,109 @@
 
 
-body{
-    background-image: url("../images/film.jpg");
-    background-size:100vw 100vh;
+  body{
+      background-image: url("../images/film.jpg");
+      background-size:100vw 100vh;
+    }
+
+  /* Login style */
+
+  #loginPage {
+    margin-top: 20px;
   }
 
-/* Login style */
+  .dmh1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+  }
 
-#loginPage {
-  margin-top: 20px;
-}
+  .dmp {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
 
-.dmh1 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 50px;
-}
+  }
 
-.dmp {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 20px;
+  .lead{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+  }
 
-}
+  label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+  }
 
-.lead{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 30px;
-}
+  #emailHelp {
+    font-weight: bold;
+    font-size: 90%;
+  }
 
-label {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 20px;
-}
+  #enroll, #login, #pswdReset, #emailUpdate {
+    background-color: #490E63;
+    color: #F4EEDD;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
 
-#emailHelp {
-  font-weight: bold;
-  font-size: 90%;
-}
+  a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+      }
+  /* SignUp Style */
 
-#enroll, #login, #pswdReset, #emailUpdate {
-  background-color: #490E63;
-  color: #F4EEDD;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+  #signUpjbt {
+    margin-top: 20px;
+  }
 
-a, a:hover, a:focus, a:active {
-  text-decoration: none;
-  color: inherit;
-     }
-/* SignUp Style */
+  #dmh1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 75px;
+  }
 
-#signUpjbt {
-  margin-top: 20px;
-}
+  #submit {
+    background-color: #490E63;
+    color: #F4EEDD;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+  }
 
-#dmh1 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 75px;
-}
+  #displayHelp {
+    font-weight: bold;
+    font-size: 90%;
+  }
 
-#submit {
-  background-color: #490E63;
-  color: #F4EEDD;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-align: center;
-}
+  /* Dashboard styling */
 
-#displayHelp {
-  font-weight: bold;
-  font-size: 90%;
-}
 
-  
+  #dashbrdjbt {
+    margin-top: 20px;
+  }
+
+  #dmh1DB {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 75px;
+    text-align: center;
+  }
+
+  #favListGreet {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+    text-align: center;
+  }
+
+  #favListMovie {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  #dshSubmit {
+    background-color: #490E63;
+    color: #F4EEDD;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    margin-top: 25px;
+  }
+
+  /* Movie-Dinner Page styling */
   #moviePanel{
     text-align: center;
     opacity: 0.8;
@@ -113,14 +146,21 @@ a, a:hover, a:focus, a:active {
   }
   
   #search {
-    /* background-color: #d28901;  */
     background-color: #490E63;
     border-radius: 5px; 
     color: #F4EEDD;
-    /* color: rgb(5, 1, 7);  */
     font-size: 24px; 
     padding: 5px;
     float: left;
+  }
+
+  #dshbdRtn{
+    background-color: #490E63;
+    border-radius: 5px; 
+    color: #F4EEDD;
+    font-size: 24px; 
+    padding: 5px;
+    text-align: center;
   }
 
   #saveGenre {
