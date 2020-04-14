@@ -46,12 +46,12 @@ Project 2 is a full-stack web application.
 
    **Login Page**
 
-   ![Login Page](./Images/Login.png)
+   ![Login Page](./public/images/Login.png)
 
    **SignUp Page**
 
-   ![SignUp Page](./Images/SignUp.png)
+   ![SignUp Page](./public/images/SignUp.png)
 
    **Dinner-Movie Page**
 
-   ![Dinner-Movie Page](./Images/dm.png)
+   ![Dinner-Movie Page](./public/images/dm.png)
