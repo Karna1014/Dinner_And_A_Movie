@@ -221,6 +221,8 @@
  }
 
  #dinnerPanel{
+  width: 80%;
+  margin-left: 100px;
   text-align: center;
   font-size: 20px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
