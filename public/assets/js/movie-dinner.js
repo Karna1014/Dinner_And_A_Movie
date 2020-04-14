@@ -110,15 +110,9 @@ $("#find-recipe").on("click", function(event) {
                       // var btnSave = $('<input type="button" class="btnSave" name="btnSave" value="Saved Recipes">').addClass("btn btn-primary btn-lg").attr('id', cardCount++);
   // Appending all the information to the HTML file. 
                       $("#recipe-view").append(image, recipeURL, ingred, hr);
-                      
-                        // $(document).on('click', 'input', function() {saveThis(item.title, item.href)});
+                        console.log("Recipes Added.");
                     })
                 }) 
                 })
           
-                // function saveThis(title, href) {
-                //       // event.preventDefault();
-                //       $("#saved-recipes").append(title, ": ", href, " | | ");
-                //       console.log(title, ": ", href);
-            
-                //     }    
+                 
