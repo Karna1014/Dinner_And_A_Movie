@@ -1,0 +1,17 @@
+<div class="form">
+<label for="displayName">Please enter your email</label>
+<input type="text" id="email" class="form-control" name="displayName" aria-describedby="displayName">
+<button type="button" id="submit" class="btn btn-success">Submit</button>
+</div>
+
+<script>
+    $("#submit").on("click", function(event){
+        event.preventDefault();
+        $.ajax({
+            url:"/email",
+            method: "POST",
+            data: $("#email").val().trim()
+        }).then(function(res){
+            res.send();
+        })
+</script>

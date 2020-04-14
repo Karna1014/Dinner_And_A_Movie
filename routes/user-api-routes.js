@@ -1,4 +1,5 @@
 
+
 const express = require("express");
 const sequelize = require("sequelize");
 const request = require("request");
@@ -26,6 +27,7 @@ module.exports = function (app) {
     var email = req.body.email;
     var password = req.body.pswd;
     var displayName = req.body.displayName;
+    //var uid = req.body.uid;
     var uid;
     firebase
       .auth()
@@ -43,6 +45,7 @@ module.exports = function (app) {
       .catch(function (error) {
         res.statusCode = 404;
       });
+     // res.redirect("/movie-dinner");
   });
 
   app.post("/api/authenticate", function (req, res) {
@@ -122,18 +125,25 @@ module.exports = function (app) {
   app.post("/api/", function(req,res){
       res.redirect("/dashboard");
   });
-//----------------------------------------------------------------------------------
-
+//
   //find all users
   app.get("/api/users", function(req, res) {
     
     db.User.findAll({
+      include: [db.Movie]
     }).then(function(dbUser) {
       res.json(dbUser);
     });
   });
 
-  
+  app.get("/api/movies", function(req, res) {
+    
+    db.Movie.findAll({
+      include: [db.User]
+    }).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
 
   //find user by Id
   app.get("/api/users/:id", function(req, res) {
@@ -141,6 +151,7 @@ module.exports = function (app) {
      where: {
       id: req.params.id
      },
+     include: [db.Movie]
      }).then(function(dbUser) {
       res.json(dbUser);
      });
@@ -161,6 +172,7 @@ module.exports = function (app) {
        where: {
          id: req.params.id
        },
+       include: [db.User]
      }).then(function(dbMovie) {
        res.json(dbMovie);
     });
@@ -176,6 +188,7 @@ module.exports = function (app) {
   //   });
   // });
   
+
   // GET route for user id (when existing user logs in)
   app.get("/current/:id", function (req, res) {
     db.User.findOne({
@@ -195,6 +208,9 @@ module.exports = function (app) {
      });
    });
 
+  app.get("/email", function(req, res)
+    res.render("email", { title: "email Page" });
+  });
   //POST route for nodemailer
   app.post("/email", function (req, res) {
      let recipient = req.body.email;
@@ -203,7 +219,9 @@ module.exports = function (app) {
        where: {
          email: recipient,
        },
+       include: [db.Movie]
     }).then(function (result) {
+      console.log(result);
       var genreId = result.genreId;
       var today = moment().format("YYYY-MM-DD");
        var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
@@ -211,8 +229,8 @@ module.exports = function (app) {
        request(queryURL, function (error, response, body) {
          console.log("error:", error); // Print the error if one occurred
          console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
-         var moviesBody = JSON.parse(body);         //var imgToEmail = "<img src="../public/assets/images/img1">";
-
+         var moviesBody = JSON.parse(body);   
+         var imgToEmail = " <img src='https://image.tmdb.org/t/p/w500/" + movies[i].poster_path; + "' />";     
         console.log("Nodemailer sending to: " + recipient);
 
          let transporter = nodemailer.createTransport({
@@ -231,11 +249,8 @@ module.exports = function (app) {
           replyTo: "youseu891@gmail.com",
            to: recipient,
            subject: "Here are the movies you requested!",
-           text:
-             "'" +
-             moviesBody.results[0].title +             "', Release Date: " +
-moviesBody.results[0].release_date,
-         };
+           text: "'" + moviesBody.results[0].title + "', Release Date: " + moviesBody.results[0].release_date
+                      };
 
         transporter.sendMail(mailOptions, function (error, info) {
           if (error) {
@@ -338,5 +353,6 @@ moviesBody.results[0].release_date,
         });
       });
     });
-  });
- };
+
+
+ 
