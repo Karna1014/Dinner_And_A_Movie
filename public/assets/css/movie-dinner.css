@@ -12,7 +12,7 @@
   }
 
   .dmh1 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Lobster', cursive;
     font-size: 50px;
   }
 
@@ -51,10 +51,11 @@
 
   #signUpjbt {
     margin-top: 20px;
+
   }
 
   #dmh1 {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Lobster', cursive;
     font-size: 75px;
   }
 
@@ -78,7 +79,7 @@
   }
 
   #dmh1DB {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Lobster', cursive;
     font-size: 75px;
     text-align: center;
   }
@@ -129,7 +130,7 @@
   
   #movieP {
     font-size:24px; 
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    font-family: 'Lobster', cursive; 
     background-color: black; 
     color:azure; 
     text-align: center; size:32px; 
