@@ -188,8 +188,27 @@ module.exports = function (app) {
   //   });
   // });
   
-  app.get("/email", function(req, res){
 
+  // GET route for user id (when existing user logs in)
+  app.get("/current/:id", function (req, res) {
+    db.User.findOne({
+     where: {
+        id: req.params.id,
+       },
+     }).then(function (result) {
+      var Genre = resul.genreId;
+      var today = moment().format("YYYY-MM-DD");
+      var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
+
+      request(queryURL, function (error, response, body) {
+        console.log("error:", error); // Print the error if one occurred
+         console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+         res.render("profile", JSON.parse(body));
+       });
+     });
+   });
+
+  app.get("/email", function(req, res)
     res.render("email", { title: "email Page" });
   });
   //POST route for nodemailer
@@ -246,5 +265,94 @@ module.exports = function (app) {
         res.send(true);
       });
     });
-  });
- };
+
+    //GET route for FB id (when existing user logs in)
+    app.get("/current/:id", function (req, res) {
+      db.Users.findOne({
+        where: {
+          id: req.params.id,
+        },
+        include: [db.Movies],
+      }).then(function (result) {
+        var genreId = result.genreId;
+        var today = moment().format("YYYY-MM-DD");
+        var queryURL =
+          "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" +
+          today +
+          "&with_genres=" +
+          genreId;
+
+        request(queryURL, function (error, response, body) {
+          console.log("error:", error); // Print the error if one occurred
+          console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+          res.render("profile", JSON.parse(body));
+        });
+      });
+    });
+
+    //POST route for nodemailer
+    app.post("/email", function (req, res) {
+      let recipient = req.body.email;
+
+      db.Users.findOne({
+        where: {
+          email: recipient,
+        },
+        include: [db.Movies],
+      }).then(function (result) {
+        var genreId = result.genre;
+        var today = moment().format("YYYY-MM-DD");
+        var queryURL =
+          "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" +
+          today +
+          "&with_genres=" +
+          genreId;
+
+        request(queryURL, function (error, response, body) {
+          console.log("error:", error); // Print the error if one occurred
+          console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+          var moviesBody = JSON.parse(body);
+          //var imgToEmail = "<img src="../public/assets/images/img1">";
+
+          console.log("Nodemailer sending to: " + recipient);
+
+          let transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+              user: "yousue891@gmail.com",
+              pass: "Tha,bto7",
+            },
+            tls: {
+              rejectUnauthorized: false,
+            },
+          });
+
+          let mailOptions = {
+            from: "yousue891@gmail.com",
+            replyTo: "youseu891@gmail.com",
+            to: recipient,
+            subject: "Here are the movies you requested!",
+            text:
+              "'" +
+              moviesBody.results[0].title +
+              "', Release Date: " +
+              moviesBody.results[0].release_date,
+          };
+
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent");
+            }
+          });
+
+          console.log("Movies successfully sent: " + moviesBody);
+
+          res.send(true);
+        });
+      });
+    });
+
+
+ 
