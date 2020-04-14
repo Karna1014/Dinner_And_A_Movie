@@ -84,24 +84,29 @@ module.exports = function (app) {
           where: user.id = db.Movie.UserId
         }).then(function(data) {
           
-          moviesToReturn = [];
-          for (var i = 0; i < data.length; i++) {
-            if (moviesToReturn.indexOf(data[i].dataValues.genreName) == -1) {
-              moviesToReturn.push(data[i].dataValues.genreName);
+          //console.log(data);  
+         moviesToReturn = [];
+        for (var i = 0; i < data.length; i++) { 
+
+            if (moviesToReturn.indexOf(data[data.length-1].dataValues.genreName) == -1) {
+              
+              
+              moviesToReturn.push(data[data.length-1].dataValues.genreName);
             }
           }
           
             var hbsObject = {
               movies: moviesToReturn,
+              //movies:movieList.genreName,
               email: user.email,
               displayName: user.displayName
           };
-
+        
           res.render("dashboard", hbsObject);
         });
-      });
+      })   
     }
-  })
+  });
 
   app.post("/movie-dinner", function (req, res) {
   var genreId = req.body.genreId;
@@ -122,9 +127,9 @@ module.exports = function (app) {
   });
 
 //---------------------------------------------------------------------------------
-  app.post("/api/", function(req,res){
-      res.redirect("/dashboard");
-  });
+  // app.post("/api/", function(req,res){
+  //     res.redirect("/dashboard");
+  // });
 //
   //find all users
   app.get("/api/users", function(req, res) {
@@ -187,18 +192,20 @@ module.exports = function (app) {
   //     res.json(dbMovie);
   //   });
   // });
-  
-  app.get("/email", function(req, res){
+ 
+  //Need to be fix minor connection issue
+  app.get("/send", function(req, res){
 
-    res.render("email", { title: "email Page" });
+    res.render("send", { title: "email Page" });
   });
   //POST route for nodemailer
-  app.post("/email", function (req, res) {
-     let recipient = req.body.email;
-
+  app.post("/send", function (req, res) {
+    
      db.User.findOne({
+      // var recipient =req.body.email;
+
        where: {
-         email: recipient,
+         email: req.body.email,
        },
        include: [db.Movie]
     }).then(function (result) {
@@ -212,7 +219,7 @@ module.exports = function (app) {
          console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
          var moviesBody = JSON.parse(body);   
          var imgToEmail = " <img src='https://image.tmdb.org/t/p/w500/" + movies[i].poster_path; + "' />";     
-        console.log("Nodemailer sending to: " + recipient);
+        console.log("Nodemailer sending to: " + result.email);
 
          let transporter = nodemailer.createTransport({
            service: "gmail",

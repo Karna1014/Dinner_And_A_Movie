@@ -32,7 +32,7 @@ $("#submit").on("click", function (event) {
                 }
 
                 if (res.loggedInUserId != null) {
-                localStorage.getItem("loggedInUserId", res.loggedInUserId);
+                localStorage.setItem("loggedInUserId", res.loggedInUserId);
                 }
             }
             window.location.href="/";
