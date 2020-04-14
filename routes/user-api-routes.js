@@ -185,7 +185,7 @@ module.exports = function (app) {
      }).then(function (result) {
       var Genre = resul.genreId;
       var today = moment().format("YYYY-MM-DD");
-      var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
+      var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
 
       request(queryURL, function (error, response, body) {
         console.log("error:", error); // Print the error if one occurred
@@ -206,7 +206,7 @@ module.exports = function (app) {
     }).then(function (result) {
       var genreId = result.genreId;
       var today = moment().format("YYYY-MM-DD");
-       var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
+       var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
 
        request(queryURL, function (error, response, body) {
          console.log("error:", error); // Print the error if one occurred
@@ -262,7 +262,7 @@ moviesBody.results[0].release_date,
         var genreId = result.genreId;
         var today = moment().format("YYYY-MM-DD");
         var queryURL =
-          "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" +
+          "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" +
           today +
           "&with_genres=" +
           genreId;
@@ -288,7 +288,7 @@ moviesBody.results[0].release_date,
         var genreId = result.genre;
         var today = moment().format("YYYY-MM-DD");
         var queryURL =
-          "https://api.themoviedb.org/3/discover/movie?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" +
+          "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" +
           today +
           "&with_genres=" +
           genreId;
