@@ -1,9 +1,9 @@
 <div class="container">
     <div class="jumbotron" id="dashbrdjbt">
-        <h1 class="display-4" id="dmh1">Dinner And A Movie</h1>
+        <h1 class="display-4" id="dmh1DB">Dinner And A Movie</h1>
         <br>
         <panel>
-            <div class="col md 12" style="text-align:center">
+            <div class="col md 12" id="favListGreet">
                 <h2>Hello {{this.displayName}}!</h2>
                 <h2>Email: {{this.email}}</h2>
             </div>
@@ -12,12 +12,15 @@
                     <h2>Fav Movies</h2>
                     <u1>
                         {{#each movies}}
-                            <li>{{this}}</li>
+                        <li id="favListMovie">{{this}}</li>
                         {{/each}}
                     </u1>
                 </div>
-                <button type="submit" id="submit" class="btn btn-md" onclick="window.location.href='/movie-dinner'">Search</button>
+                <p id="dashboardError" style="display: none;" class="text-danger">Error Redirecting. Please log in again!</p>
+                <button type="submit" id="dshSubmit" class="btn btn-md"
+                    onclick="window.location.href='/movie-dinner'">Search</button>
             </div>
         </panel>
     </div>
 </div>
+<script src="/assets/js/dashboard.js"></script>>
