@@ -46,7 +46,7 @@ Project 2 is a full-stack web application.
 
    **Login Page**
 
-   ![Login Page](./public/asses/images/Login.png)
+   ![Login Page](./public/assets/images/Login.png)
 
    **SignUp Page**
 
