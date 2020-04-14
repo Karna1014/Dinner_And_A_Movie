@@ -1,7 +1,7 @@
 
 
   body{
-      background-image: url("../images/movie3.jpg");
+      background-image: url("../images/moviephoto.jpg");
       background-size:100vw 100vh;
     }
 
@@ -120,7 +120,10 @@
 
   /* Movie-Dinner Page styling */
   #moviePanel{
+    width: 80%;
     text-align: center;
+    background: rgb(248, 246, 241);
+    margin-left: 100px;
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
@@ -222,6 +225,7 @@
 
  #dinnerPanel{
   width: 80%;
+  background-color: rgb(248, 246, 241);
   margin-left: 100px;
   text-align: center;
   font-size: 20px;
