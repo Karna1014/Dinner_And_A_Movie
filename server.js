@@ -5,6 +5,7 @@ const sequelize = require("sequelize");
 const app = express();
 const fbApp = require("./config/fb-config");
 const path = require("path");
+const mysql = require("mysql");
 
 
 
