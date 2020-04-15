@@ -5,7 +5,9 @@ const sequelize = require("sequelize");
 const app = express();
 const fbApp = require("./config/fb-config");
 const path = require("path");
-
+const config = require("./config/config")
+const db = require("./models");
+const PORT = process.env.PORT || 3456;
 
 
 // setting view port

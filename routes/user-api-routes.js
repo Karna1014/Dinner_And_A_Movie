@@ -7,6 +7,7 @@ var db = require("../models");
 var moment = require("moment");
 const nodemailer = require("nodemailer");
 const firebase = require("firebase");
+const config = require("../config/config")
 
 module.exports = function (app) {
   app.get("/signup", function (req, res) {
