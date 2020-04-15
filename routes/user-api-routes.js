@@ -2,7 +2,8 @@ const request = require("request");
 var db = require("../models");
 var moment = require("moment");
 const nodemailer = require("nodemailer");
-const firebase = require("firebase");
+//const firebase = require("firebase");
+const fbApp = require("../config/fb-config");
 
 module.exports = function (app) {
   app.get("/signup", function (req, res) {
@@ -25,8 +26,7 @@ module.exports = function (app) {
     var displayName = req.body.displayName;
     // var uid = req.body.uid;
     // var uid;
-    firebase
-      .auth()
+    fbApp
       .createUserWithEmailAndPassword(email, password)
       .then((data) => {
         const uid = data.uid
@@ -46,8 +46,7 @@ module.exports = function (app) {
 
   app.post("/api/authenticate", function (req, res) {
     console.log(req.body.email, req.body.pswd)
-    firebase
-      .auth()
+    fbApp
       .signInWithEmailAndPassword(req.body.email, req.body.pswd)
       .then((data) => {
         console.log(data)
@@ -69,7 +68,7 @@ module.exports = function (app) {
   });
 
   app.get("/dashboard", function(req,res) {
-    const user = firebase.auth().currentUser;
+    const user = fbApp.currentUser;
     if (user) {
       db.User.findOne({
         where: {
