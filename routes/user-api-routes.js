@@ -1,7 +1,3 @@
-
-
-const express = require("express");
-const sequelize = require("sequelize");
 const request = require("request");
 var db = require("../models");
 var moment = require("moment");
@@ -213,7 +209,7 @@ module.exports = function (app) {
       console.log(result);
       var genreId = result.genreId;
       var today = moment().format("YYYY-MM-DD");
-       var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
+       var queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + process.env.TMDB_API_KEY + "&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" + today + "&with_genres=" + genreId;
 
        request(queryURL, function (error, response, body) {
          console.log("error:", error); // Print the error if one occurred
