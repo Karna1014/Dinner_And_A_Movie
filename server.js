@@ -5,7 +5,7 @@ const sequelize = require("sequelize");
 const app = express();
 const fbApp = require("./config/fb-config");
 const path = require("path");
-const config = require(__dirname, + "./config/config.js")[env]
+
 
 
 
