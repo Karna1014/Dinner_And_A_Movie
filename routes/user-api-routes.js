@@ -22,18 +22,18 @@ module.exports = function (app) {
 
   // POST route for new user
   app.post("/signup", function (req, res) {
-    var database = firebase.database();
-    var user = firebase.auth().currentUser;
+    // var database = firebase.database();
+    // var user = firebase.auth().currentUser;
     var email = req.body.email;
     var password = req.body.pswd;
     var displayName = req.body.displayName;
-    var uid = req.body.uid;
-    var uid;
+    // var uid = req.body.uid;
+    // var uid;
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((data) => {
-        uid = data.uid
+        const uid = data.uid
         db.User.create({
           displayName: displayName,
           email: email,
