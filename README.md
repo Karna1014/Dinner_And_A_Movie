@@ -54,4 +54,6 @@ Project 2 is a full-stack web application.
 
    **Dinner-Movie Page**
 
+
    ![Dinner-Movie Page](./public/assets/images/dm.png)
+
