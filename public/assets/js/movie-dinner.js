@@ -1,4 +1,4 @@
-const config = require("config");
+
 
 var queryURL =
   "https://api.themoviedb.org/3/genre/movie/list?api_key=" + process.env.TMDB_API_KEY + "&language=en-US";
