@@ -21,10 +21,17 @@ module.exports = {
         logging: false
       }
     },
-    production: {
-      'use_env_variable': 'JAWSDB_URL',
-      details: {
-        dialect: "mysql"
-      }
+     production: {
+      username: "plmx0qiehm7wtmi2",
+      password: "ey0hhustegyf4gvh",
+      database: "jtigcrv340pl4jjs",
+      host: "cig4l2op6r0fxymw.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      dialect: "mysql"
     }
+    // production: {
+    //   'use_env_variable': 'JAWSDB_URL',
+    //   details: {
+    //     dialect: "mysql"
+    //   }
+    // }
   };
