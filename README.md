@@ -37,10 +37,10 @@ Project 2 is a full-stack web application.
    
    #### If you have any questions about this repo, please reach out: 
 
-   **Email: karna.cutolo@gmail.com**
-   **Email: jasminrowdy@gmail.com**
-   **Email: rtpice.mu@gmail.com**
-   **Email: nguyenvmolly@gmail.com**
+   * **Email: karna.cutolo@gmail.com**
+   * **Email: jasminrowdy@gmail.com**
+   * **Email: rtpice.mu@gmail.com**
+   * **Email: nguyenvmolly@gmail.com**
      
    #### Images: 
 
