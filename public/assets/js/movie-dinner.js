@@ -1,7 +1,7 @@
 const config = require("config");
 
 var queryURL =
-  "https://api.themoviedb.org/3/genre/movie/list?api_key=TMDB_API_KEY&language=en-US";
+  "https://api.themoviedb.org/3/genre/movie/list?api_key=" + process.env.TMDB_API_KEY + "&language=en-US";
 
 $.ajax({
   url: queryURL,
@@ -25,7 +25,7 @@ $("#search").click(function () {
   var genreId = $("select").val();
 
   var queryURL =
-    "https://api.themoviedb.org/3/discover/movie?api_key=TMDB_API_KEY&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" +
+    "https://api.themoviedb.org/3/discover/movie?api_key=" + process.env.TMDB_API_KEY + "&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=" +
     today +
     "&with_genres=" +
     genreId;
@@ -92,7 +92,7 @@ $("#find-recipe").on("click", function (event) {
   var header =
     "https://cors-anywhere.herokuapp.com/https://recipe-puppy.p.rapidapi.com/?p=1&i=";
   var i = $("#recipe-input").val().trim();
-  var apikey = "&rapidapi-key=process.env.RP_API_KEY";
+  var apikey = "&rapidapi-key=" + process.env.RP_API_KEY;
   var queryURLdin = header + i + apikey;
   console.log(queryURLdin);
   // AJAX call with parsed responses.
