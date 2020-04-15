@@ -1,79 +1,131 @@
 
 
-body{
-    background-image: url("../images/film.jpg");
-    background-size:100vw 100vh;
+  body{
+      background-image: url("../images/moviephoto.jpg");
+      background-size:100vw 100vh;
+    }
+
+  /* Login style */
+
+  #loginPage {
+    margin-top: 20px;
+    padding: 0px;
+    box-shadow: 10px 25px 18px red
   }
 
-/* Login style */
+  .mainJumbo{
+    background-color: #8723af;
+    margin: 30px;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 5px 10px 18px red
+  }
+  .dmh1 {
+    font-family: 'Lobster', cursive;
+    font-size: 50px;
+  }
 
-#loginPage {
-  margin-top: 20px;
-}
+  #dmh2 {
+    font-family: 'Lobster', cursive;
+    font-size: 25px;
+  }
 
-.dmh1 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 50px;
-}
+  .dmp {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
 
-.dmp {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 20px;
+  }
 
-}
+  .lead{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+  }
 
-.lead{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 30px;
-}
+  label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+  }
 
-label {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 20px;
-}
+  #emailHelp {
+    font-weight: bold;
+    font-size: 90%;
+  }
 
-#emailHelp {
-  font-weight: bold;
-  font-size: 90%;
-}
+  #enroll, #login, #pswdReset, #emailUpdate {
+    background-color: #490E63;
+    color: #F4EEDD;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
 
-#enroll, #login, #pswdReset, #emailUpdate {
-  background-color: #490E63;
-  color: #F4EEDD;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+  a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+      }
+  /* SignUp Style */
 
-a, a:hover, a:focus, a:active {
-  text-decoration: none;
-  color: inherit;
-     }
-/* SignUp Style */
+  #signUpjbt {
+    margin-top: 20px;
+    box-shadow: 10px 25px 18px red
+  }
 
-#signUpjbt {
-  margin-top: 20px;
-}
+  #dmh1 {
+    font-family: 'Lobster', cursive;
+    font-size: 75px;
+  }
 
-#dmh1 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 75px;
-}
-
-#submit {
-  background-color: #490E63;
-  color: #F4EEDD;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  text-align: center;
-}
-
-#displayHelp {
-  font-weight: bold;
-  font-size: 90%;
-}
-
-  
-  #moviePanel{
+  #submit {
+    background-color: #490E63;
+    color: #F4EEDD;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
-    opacity: 0.8;
+  }
+
+  #displayHelp {
+    font-weight: bold;
+    font-size: 90%;
+  }
+
+  /* Dashboard styling */
+
+
+  #dashbrdjbt {
+    margin-top: 20px;
+    box-shadow: 10px 25px 18px red
+  }
+
+  #dmh1DB {
+    font-family: 'Lobster', cursive;
+    font-size: 75px;
+    text-align: center;
+  }
+
+  #favListGreet {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+    text-align: center;
+  }
+
+  #favListMovie {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  #dshSubmit {
+    background-color: #490E63;
+    color: #F4EEDD;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    margin-top: 25px;
+  }
+
+  /* Movie-Dinner Page styling */
+  #moviePanel{
+    width: 80%;
+    text-align: center;
+    background: rgb(248, 246, 241);
+    box-shadow: 10px 25px 18px rgb(233, 224, 224);
+    margin-left: 100px;
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
@@ -96,7 +148,7 @@ a, a:hover, a:focus, a:active {
   
   #movieP {
     font-size:24px; 
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    font-family: 'Lobster', cursive; 
     background-color: black; 
     color:azure; 
     text-align: center; size:32px; 
@@ -113,14 +165,21 @@ a, a:hover, a:focus, a:active {
   }
   
   #search {
-    /* background-color: #d28901;  */
     background-color: #490E63;
     border-radius: 5px; 
     color: #F4EEDD;
-    /* color: rgb(5, 1, 7);  */
     font-size: 24px; 
     padding: 5px;
     float: left;
+  }
+
+  #dshbdRtn{
+    background-color: #490E63;
+    border-radius: 5px; 
+    color: #F4EEDD;
+    font-size: 24px; 
+    padding: 5px;
+    text-align: center;
   }
 
   #saveGenre {
@@ -139,17 +198,40 @@ a, a:hover, a:focus, a:active {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
-  #dinSrch {
-    background-color: #490E63;
-    border-radius: 5px; 
-    color: #F4EEDD;
-    font-size: 24px; 
-    padding: 5px;
-    float: left;
-  }
-
   li {
     margin-top: 15px;
-    border-top: 1px dotted black;
   }
-  
+
+  /* Styling for dinner section */
+  #image{
+    height: 180px;
+    width: 210px;
+    box-shadow: 5px 10px 8px #8723af
+ }
+ 
+ #find-recipe{
+      background-color: #490E63;
+      border-radius: 5px; 
+      color: #F4EEDD;
+      font-size: 20px; 
+     margin-top: 5px;
+     margin-right: 20px;
+     margin-bottom: 5px;
+     margin-left: 10px;
+     padding: 5px;
+ }
+
+ h2:hover{
+    color: rgb(63, 38, 206);
+ }
+
+ #dinnerPanel{
+  width: 80%;
+  background-color: rgb(248, 246, 241);
+  box-shadow: 10px 25px 18px rgb(160, 99, 201);
+  margin-left: 100px;
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+ 

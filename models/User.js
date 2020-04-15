@@ -1,6 +1,7 @@
 
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
+    
     displayName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,5 +19,14 @@ module.exports = function(sequelize, DataTypes) {
     }
     }, 
   });
-      return User;
-      };
+
+  User.associate = function(models) {
+    // Associating User with Movies
+    // When an User is deleted, also delete any associated Movies
+    User.hasMany(models.Movie, {
+      onDelete: "cascade"
+    });
+  };
+
+  return User;
+};

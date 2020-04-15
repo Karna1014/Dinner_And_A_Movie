@@ -9,7 +9,6 @@ Project 2 is a full-stack web application.
   * Usage 
   * License 
   * Contributing 
-  * Tests 
   * Questions 
   * Images 
    
@@ -32,9 +31,7 @@ Project 2 is a full-stack web application.
    * Shuyun Mu
    * Molly Nguyen
    
-   **Tests:**
    
-   npm test
 
    ### Questions: 
    
@@ -43,10 +40,18 @@ Project 2 is a full-stack web application.
    **Email: karna.cutolo@gmail.com**
    **Email: jasminrowdy@gmail.com**
    **Email: rtpice.mu@gmail.com**
-   **Email: 
+   **Email: nguyenvmolly@gmail.com**
      
    #### Images: 
 
-   **Responsiveness View - I-Phone 6/7/8**
+   **Login Page**
 
-   ![Main Page](./Images/I-Phone-6-7-8.png)
+   ![Login Page](./public/assets/images/Login.png)
+
+   **SignUp Page**
+
+   ![SignUp Page](./public/assets/images/SignUp.png)
+
+   **Dinner-Movie Page**
+
+   ![Dinner-Movie Page](./public/assets/images/dm.png)
