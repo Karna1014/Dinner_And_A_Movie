@@ -2,7 +2,8 @@ const request = require("request");
 var db = require("../models");
 var moment = require("moment");
 const nodemailer = require("nodemailer");
-//const firebase = require("firebase");
+const firebase = require("firebase");
+const axios = require("axios");
 const fbApp = require("../config/fb-config");
 
 module.exports = function (app) {
@@ -25,8 +26,7 @@ module.exports = function (app) {
     var password = req.body.pswd;
     var displayName = req.body.displayName;
     
-    fbApp
-      .createUserWithEmailAndPassword(email, password)
+    fbApp.createUserWithEmailAndPassword(email, password)
       .then((data) => {
         const uid = data.uid
         db.User.create({
@@ -67,7 +67,7 @@ module.exports = function (app) {
   });
 
   app.get("/dashboard", function(req,res) {
-    const user = fbApp.auth().currentUser;
+    const user = firebase.auth().currentUser;
     if (user) {
       db.User.findOne({
         where: {
@@ -247,6 +247,16 @@ module.exports = function (app) {
 
         res.send(true);
       });
-    });
+    });  
   });
- };
+  //  axios code
+
+
+
+//  axios.get(queryUrl).then(function(res) {
+//   const repoNames = res.data.map(function(repo) {
+//     return repo.name;
+//   });
+
+
+}

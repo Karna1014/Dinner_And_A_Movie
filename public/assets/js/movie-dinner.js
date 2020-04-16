@@ -1,18 +1,19 @@
 var queryURL =
   "https://api.themoviedb.org/3/genre/movie/list?api_key=3d866c05691ba06f9fa697f8e8c9e838&language=en-US";
 
-$.ajax({
+ $.ajax({
   url: queryURL,
-  method: "GET",
-}).done(function (response) {
+   method: "GET",
+ }).done(function (response) {
   var genres = response.genres;
   for (i = 0; i < genres.length; i++) {
     $("select").append(
       "<option value='" + genres[i].id + "'>" + genres[i].name + "</option>"
-    );
+     );
   }
 });
 
+ 
 var queryLimit = 8;
 var today = moment().format("YYYY-MM-DD");
 
