@@ -25,7 +25,7 @@ module.exports = function (app) {
     var email = req.body.email;
     var password = req.body.pswd;
     var displayName = req.body.displayName;
-    
+    console.log(password);
     fbApp.createUserWithEmailAndPassword(email, password)
       .then((data) => {
         const uid = data.uid
@@ -40,7 +40,7 @@ module.exports = function (app) {
       .catch(function (error) {
         res.statusCode = 404;
       });
-     // res.redirect("/movie-dinner");
+     
   });
 
   app.post("/api/authenticate", function (req, res) {
@@ -75,25 +75,20 @@ module.exports = function (app) {
         },
       }).then(function(user) {
         db.Movie.findAll({
-          where: user.id = db.Movie.UserId
+          where: {UserId : user.id},
         }).then(function(data) {
-          
-          //console.log(data);  
-         moviesToReturn = [];
-        for (var i = 0; i < data.length; i++) { 
-
-            if (moviesToReturn.indexOf(data[data.length-1].dataValues.genreName) == -1) {
-              
-              
-              moviesToReturn.push(data[data.length-1].dataValues.genreName);
-            }
-          }
-          
-            var hbsObject = {
-              movies: moviesToReturn,
-              //movies:movieList.genreName,
-              email: user.email,
-              displayName: user.displayName
+            
+          moviesToReturn = [];
+          for (var i = 0; i < data.length; i++) { 
+              if (moviesToReturn.indexOf(data[i].dataValues.genreName) == -1) {
+                moviesToReturn.push(data[i].dataValues.genreName);            
+              }
+          }         
+          var hbsObject = {
+            movies: moviesToReturn,
+            //movies:movieList.genreName,
+            email: user.email,
+            displayName: user.displayName
           };
         
           res.render("dashboard", hbsObject);
@@ -102,18 +97,26 @@ module.exports = function (app) {
     }
   });
 
-  app.post("/movie-dinner", function (req, res) {
-  var genreId = req.body.genreId;
-  var genreName = req.body.genreName;
-  var userId = req.body.userId;
+  app.post("/add-movie-dinner", function (req, res) {
+    var genreId = req.body.genreId;
+    var genreName = req.body.genreName;
 
-  db.Movie.create({
-  genreId: genreId,
-  genreName: genreName,
-  UserId: parseInt(userId)
-   }).then(function (res) {
-  console.log(res);
-  });
+    const user = firebase.auth().currentUser;
+    if (user) {
+      db.User.findOne({
+        where: {
+          email: user.email,
+        },
+      }).then(function(user) {
+        db.Movie.create({
+          genreId: genreId,
+          genreName: genreName,
+          UserId: user.id
+        }).then(function (res) {
+          console.log(res);
+        });
+      });
+    }
   });
 
   app.get("/", function (req, res) {
@@ -252,11 +255,50 @@ module.exports = function (app) {
   //  axios code
 
 
+  app.get("/api/movie-dinner/genres", function(req, res){
+    var genreId = req.body.genreId;
+    var genreName = req.body.genreName;
+    genreApi(genreId, genreName, data => {
+      //console.log(data);
+      res.json(data);
+    });
+    function genreApi(genreId, genreName, callback){
+      var api_key = process.env.TMDB_API_KEY;        
+      var queryURL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}&language=en-US`;  
+      axios({
+        url: queryURL,
+        method: "GET",
+      })
+        .then(function (response) {
+          // console.log(response);
+          callback(response.data);
+        })
+        .catch(function (err) {
+          console.error(err);
+        });
+      }
+   });
 
-//  axios.get(queryUrl).then(function(res) {
-//   const repoNames = res.data.map(function(repo) {
-//     return repo.name;
-//   });
+  app.get("/api/movie-dinner/movies", function(req, res){
+    movieApi();
+    function movieApi(){
+      var api_key = process.env.TMDB_API_KEY; 
+      var today = moment().format('YYYY-MM-DD');
+      var genreId = req.query.genreId;
+
+      var URL =`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&region=US&sort_by=release_date.asc&include_video=false&page=1&primary_release_date.gte=${today}&with_genres=${genreId}`;
+      axios({
+        url: URL,
+        method: "GET",
+      })
+        .then(function (response) {
+          res.json(response.data);
+        })
+        .catch(function (err) {
+          console.error(err);
+        });
+      }
+    });
 
 
 }
