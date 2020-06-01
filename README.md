@@ -17,11 +17,11 @@ Dinner_And_A_Movie is a full-stack web application allowing users to search for 
    npm install
    
    ### Technology: 
-   * ![Firebase](https://firebase.google.com/)
-   * ![MySQL](https://www.mysql.com/)
-   * ![Axios](https://www.npmjs.com/package/axios)
-   * ![Express](https://expressjs.com/)
-   * ![Express-handlebars](https://npmjs.com/package/express-handlebars)
+   * [Firebase](https://firebase.google.com/)
+   * [MySQL](https://www.mysql.com/)
+   * [Axios](https://www.npmjs.com/package/axios)
+   * [Express](https://expressjs.com/)
+   * [Express-handlebars](https://npmjs.com/package/express-handlebars)
 
  
    
