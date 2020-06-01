@@ -1,5 +1,5 @@
 # Dinner_And_A_Movie
-Project 2 is a full-stack web application.  
+Dinner_And_A_Movie is a full-stack web application allowing users to search for recipes and movie options based on their interests and save them together for a perfect movie night with their family.   
 
  ## Description: 
  Stuck at home a lot more lately? Needs ideas for a perfect night in? This application will allow users to search for recipes and movie options based on their interests and save them together for a perfect movie night with their family. (We will be using 2 APIs to get information). Users will then pair their favorite movie search and dinner recipe option(s) searched from ingredients they have in their home.  If users would like to save a particular movie search, it can be saved and populated on their dashboard future reference.
@@ -16,7 +16,12 @@ Project 2 is a full-stack web application.
 
    npm install
    
-   ### Usage: 
+   ### Technology: 
+   * ![Firebase](https://firebase.google.com/)
+   * ![MySQL](https://www.mysql.com/)
+   * ![Axios](https://www.npmjs.com/package/axios)
+   * ![Express](https://expressjs.com/)
+   * ![Express-handlebars](https://npmjs.com/package/express-handlebars)
 
  
    
